@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<templates>
+  <template>
+    <name>Welcome</name>
+    <text><![CDATA[Thank you for using the Support Templates application.  This application was created to give support analysts a way to use & manage the various templates they use day to day in their job.
+      
+Templates are commonly used sections of text that analysts use through out the day in their jobs.  This can include case updates for ordering hardware or recording tasks they complete that have the same steps every time.
+      
+This app is intended to replace the use of notepads or Word documents by being easier to find a specific template that's needed.  Rather than scrolling through pages of notes, you just click the name of the template, it shows up in the text box, & you click the Copy to Clipboard button.
+      
+The app is very lightweight & only accesses a user's clipboard to copy to it.
+This app is an original concept & was not duplicated from another application.
+Any similarities to any other application is purely coincidental.
+      
+Issues with the application can be reported to marty.elder@gmail.com.
+      
+Thanks for using the Support Templates app.  This entry can be deleted from the Templates list at any time.
+      
+    ]]></text>
+  </template>
+  <template>
+    <name>test</name>
+    <text>test</text>
+  </template>
+  <template>
+    <name>test2</name>
+    <text>test</text>
+  </template>
+  <template>
+    <name>test3</name>
+    <text>test3</text>
+  </template>
+</templates>
