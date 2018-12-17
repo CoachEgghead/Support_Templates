@@ -1,24 +1,1646 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <templates>
   <template>
-    <name>Welcome</name>
+    <name>Purch Order Guide Usage Calc</name>
+    <text>Usage Calc on Purchase Order Guide:
+
+Forcasted Sales (daily total added together for Order Date to day before Cover Until date) / 1000 * UPT
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Restart RDP Remotely</name>
+    <text>How to start RDP if the service isn't running:
+
+net stop termservice /y
+net start termservice
+
+Requires access to the server via SQL Management.  
+May not apply to CFA.
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Additional Hardware</name>
+    <text>Additional hardware request was placed under 000000000000
+Please contact OP and advise that request has been formally placed, and they should receive updates via email.
+After OP is updated, this incident can be closed. 
+If an electrical outlet is needed the OP will need to arrange that with his local electrician.
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>NCR Hardware</name>
+    <text>A new XYZ has been ordered for this unit.
+Radiant Call number is XYZ
+It should arrive on XYZ via FedEx.  
+Please follow up with the site and confirm operation following installation. </text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Consumables</name>
+    <text>Consumable part has been ordered
+NCR will update the case shortly with an ETA
+Please contact the site on estimated delivery date and confirm delivery.</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Storage Card Wipe - POS Reg</name>
+    <text>Logged into the server.
+Created a folder on the server desktop named "Backup DOs"
+Navigated to SSUI &gt;Site Repair&gt;Support Tools &gt; performed a "backup of deferred orders"
+Navigated to C:\Program Files\Radiant\Lighthouse\Data
+Copied/pasted the deferred orders in the data folder into the desktop folder "Backup DOs"
+Used SSUI to generate all relay files. 
+SSUI&gt;Updates&gt;XML Updates&gt;Gen All Relay files
+Navigated to C:\Program Files\Radiant\Lighthouse\Data\RelayGen 
+Renamed smserver.dat to smserver.dat1
+
+Opened SMTools
+Navigated to Node# &gt; Files &gt; Program Files &gt; Radiant &gt; FastPoint
+Deleted the autoexec.two file
+Rebooted each register
+Once registers rebooted, I navigated to the following locations:
+Node# &gt; Files &gt; Program Files &gt; Radiant &gt; FastPoint &gt; Media
+Node# &gt; Files &gt; Program Files &gt; Radiant &gt; FastPoint &gt; Data
+Node# &gt; Files &gt; Program Files &gt; Radiant &gt; FastPoint
+In each of these locations for each register, I deleted all files except those ending with the following extensions:  .CER, .DND, .CAP, .XML 
+
+Navigated back to C:\Program Files\Radiant\Lighthouse\Data\RelayGen
+Renamed the smserver.dat1 file back to smserver.dat
+Send All Files /Rebooted the registers
+Navigated back to SSUI and restored deferred orders. 
+Steps were taken on the following registers:
+
+KB0050302</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Tech to Install BO Switch</name>
+    <text>Replacing BO Switch per OP request
+Request S-Tech via NCR</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Macromatix(HS) Escalation</name>
+    <text>MX Escalations:
+1) Update/Escalation Notes: 
+2) Steps to Reproduce: 
+3) Expected Outcome: 
+4) Actual Outcome: 
+5) Relevant Screenshots: (yes/no)
+6) Additional Comments:  
+ 
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Shipped Hardware</name>
+    <text>: The hardware has shipped. See tracking information below and follow up with Restaurant and assist with any installation.
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>How to drop MacromatiX database</name>
+    <text>To drop the MacromatiX database:
+
+c:\&gt; sqlcmd -S .\mx
+1&gt; drop database macromatix
+2&gt; go
+1&gt; quit
+
+If database won't reattach:
+
+Stop LL Service
+Go to &lt;C:\Program Files\Microsoft SQL Server\MSSQL.2\MSSQL\Data&gt;
+Locate 2 Macromatix files
+Macromatix.MDF
+Macromatix_log.LDF
+Change the file names to reflect the following
+Macromatix_old.MDF
+Macromatix_log_old.LDF
+Start LL Service
+You should see the Log Viewer displaying a message that the MX DB has been created successfully 
+ 
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>POS Switch Replacement</name>
+    <text>A new POS switch has been ordered for this unit.  
+NCR Case  Number: XXXXXXX. 
+
+An NCR tech will be dispatched to install this equipment with in 24 hours.   
+Please coordinate with this unit to ensure that the equipment is received and assist the  NCR Tech with the installation if needed.   
+Please contact the OP/Unit and let them know the part has been ordered.  
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>S-Tech Request</name>
+    <text>An S-Tech has been requested to replace: XXXXX 
+NCR Case Number: XXXXXXX 
+Expected Tech arrival: xx/xx/xx {same day/next day}
+
+Please coordinate with this unit to ensure that the tech arrives and assist he/she with the installation. Please contact the OP/Unit and let them know the tech has been requested.
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>e355 Cases</name>
+    <text>e355 cases are shipped when the restaurant receives their new e355's (replacing the 255's).  But replacement 355's for damaged 355's are NOT shipped with a new case, the restaurant should use the case that they used with the damaged e355.</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Info</name>
+    <text>SPEP
+- MElder2 / P3rf1dious
+
+SSUI
+- developer
+- superuser
+
+InFORM
+- Gb2tf@tts
+
+LP:
+- !tbtW@eTWwwG
+
+Community
+- P3rf1dious</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Ping</name>
+    <text>1. How To Ping devices in the restaurant
+---- Use the 5 digit restaurant number + .pos (Example 01234.pos) 
+               C:\Users\jeff.jakes&gt;ping xxxxx.rtr = Router
+               C:\Users\jeff.jakes&gt;ping xxxxx.pos = POS server
+               C:\Users\jeff.jakes&gt;ping xxxxx.pc = CFA PC/Back Office PC
+               C:\Users\jeff.jakes&gt;ping micr.xxxxx =MICR Printer
+               C:\Users\jeff.jakes&gt;ping loomis.xxxxx = Smart Safe
+
+To Ping the AP’s, you must take the IP address of the RTR, drop the last number and add the following.
+250 -251-252-253-254.
+Example: ping 00818.rtr (Enter). You will receive the following results.
+Pinging 00818.pos.  [172.18.81.7] 
+You would then ping the AP’s by using this IP address, minus the last number and adding the 250-254
+Example: ping 172.18.81.250
+
+Router -  command: ping xxxxx.rtr 
+POS Server - command: ping xxxxx.pos
+CFA PC - command: ping xxxxx.pc
+Smart Safe - command: ping loomis.xxxxx
+MICR Printer - command: ping micr.xxxxx
+Third Party printer - ping printer.xxxxx
+DMZ Switch - command: ping dmz.xxxxx
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Nodecapture</name>
+    <text>&gt;nodecapture ### ###.jpeg</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Renumber Node</name>
+    <text>&gt;clientnum old### new###
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Replace KC3 Bracket</name>
+    <text>To:
+Melissa Torres NCR &lt;melissa.torres@ncr.com&gt;;Lehnherr, Sean &lt;Sean.Lehnherr@ncr.com&gt;
+
+CC:
+!Help Analyst II
+
+Subject: #### || INC####### || KC3 Bracket
+
+Body:
+
+Good Evening, 
+
+Unit 03300 states that the KC3 bracket for KPS ### is currently damaged. We would like to request a replacement KC3 bracket for KPS ### with a tech to install it. Attached are images of damaged KC3.
+
+=====================
+Incident notes:
+Emailed request to NCR for a replacement KC3 bracket. 
+Emailed included SDA for further follow-up on the issue. 
+Please contact restaurant and advise that the replacement has been requested and follow-up as updates are provided by NCR.
+
+CVC notes:
+Requested a replacement KC3 bracket for KPS ###.
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Chicken Tortilla Soup Online/Mobile</name>
+    <text>Chicken Tortilla Soup
+
+Operators have the option to start selling Chicken Tortilla soup prior to the Holiday Campaign (starting Nov 13). However, the app is unable to support individual restaurant start dates, so it will not show in the app until Nov 13.
+</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>T3 Escalation</name>
+    <text>HELP TIER 3:
+Unit #####
+OP: 
+POC: 
+
+Issue:
+
+
+Troubleshooting:
+
+
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Credit Sales Processing Example</name>
+    <text>Example of credit sales that are not processing vs one that did:
+=================================================
+
+C:\Program Files\Radiant\Epsilon\log\JournalConcordATL.log
+[12:27:15.804] 101467144,AMEX,1004,POS004,CAPTURE,14,10.59,1,,ConcordATL
+[12:27:50.593] 101467544,VS,9780,POS004,SALE,14,4.93,1,,ConcordATL
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>SPSM Application Launch</name>
+    <text>How to use the SevicePoint Store Management application:
+
+C:\Program Files\Radiant\SMW
+StoreMgmtWS.exe
+
+Go into SMTools to get the IP of the server
+Go into ServiceNow &gt; Incident &gt; Tools &gt; WAS URL
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>System Reboot Time Check</name>
+    <text>systeminfo | find "System Boot Time:"</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Deferred Order Causing EOD Failure</name>
+    <text>Deferred Order Causing EOD Failure:
+=============================
+KB0049782
+
+Deferred order 5562246 with zero dollar shows as fired at 9:17pm on 10/16/2017.
+Unit is unable to clear it themselves on the POS.
+
+In SSUI:
+Query &gt; DB Query
+*Using Table Deferred Order, select top 10 * from Deferred_Order where tran_sequence_number = ########
+
+Site Repair &gt; Support Tools (ST)
+*Ran Backup Deferred Orders (DO)
+
+In Windows:
+** C:\Program Files\Radiant\Lighthouse\Data
+*Copied to a new backup folder on desktop called DO_Backup_10172017
+*Deleted DeferredOrder5562246.xml
+
+In SSUI ran Restore Deferred Orders
+** C:\Program Files\Radiant\SMW\StoreMgmtWS.exe
+In StoreManagement &gt; Store Operations &gt; Shift Operations verified all cashiers from 10/16/2017 were settled. 
+In StoreManagement &gt; Store Operations &gt; End of Day ran EOD.  Successfully moved to 10/17/2017.
+
+***NOTE
+Left backup on desktop in case something happened during the restore and some DOs end up missing.  Can copy back the missing ones to C:\Program Files\Radiant\Lighthouse\Data and Restore Deferred Orders to get them back again.</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Loomis Email Contacts</name>
+    <text>SafePoint@us.loomis.com
+National_Call_Center@us.loomis.com
+Robert.Drach@us.loomis.com
+Marcus.Manson@us.loomis.com
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Setting up new nodes in LHDevCfg</name>
+    <text>Setting up new nodes in LHDevCfg:
+============================
+
+In LHDevCfg I added POS 48 &amp; 49 as iPOS nodes. Matched the configurations up to match node 50.
+** Have 2 instances of LHDC open and compare setups
+In LHDevCfg &gt; Store/Recall Groups I added terminals 48 &amp; 49 to be in the Drive Thru group
+In LHDevCfg &gt; KPS Route I configured the Routings that had node 50 to also include 48 &amp; 49 (200,210,20202,204,205,206,207,208,203,212,213 &amp; also Drive Thru - Rear Order Taker, Drive Thru - Front Order Taker).
+
+Save to XML
+Update Database
+Gen/Send</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Multiple Cashiers Missing Unsettled</name>
+    <text>Multiple Cashiers Unsettled/Missing:
+Troubleshooting:
+-Verified SQL Server MX, Radiant .NET, MacromatiX Livelink, MacromatiX Updater are all 'Started'.
+-Seeing .xml files still sitting in C:\Program Files\Radiant\Lighthouse\Data\Exports\CFASum.
+-Verified in SPSM that there are 9 cashiers for 9/11/2017 with Shift1.
+-Verified in SPSM that all 9 cashier Shift1 reports show CLOSED on 9/11/2017 with times around 2:20pm.
+-LiveLinkServiceHelper shows 'Store Number: 00821' and 'Configured ID: Not Set'.
+-Verified the POS server can reach eRetailer.
+Continuing troubleshooting:
+-Stopped and started SQL Server MX, Radiant .NET, MacromatiX Livelink, MacromatiX Updater services one at a time.
+-Stopped Radiant .NET, SQL Server (MS), MacromatiX LiveLink, MacromatiX Updater services in sequence.
+-Started Radiant .NET, SQL Server (MS), MacromatiX LiveLink, MacromatiX Updater services in sequence.
+-In LiveLinkServiceHelper seeing errors still including:
+"2017-09-12 18:04:08.3046 UTC - Exception occurred actioning main polling tasks (PollReason=OneMinuteTimer). Exception: System.Data.SqlClient.SqlException: Cannot open database "MacromatiX" requested by the login. The login failed. Login failed for user 'NT AUTHORITY\SYSTEM'."
+-Stopped both MacromatiX LiveLink and Updater 
+-From command prompt, dropped 'macromatix' database.
+-Started both MacromatiX LiveLink and Updater 
+
+Still receiving errors in LiveLinkServiceHelper.
+
+-Stopped MacromatiX LiveLink
+-Tried to drop database 'macromatix' again but it failed due to the database not being re-attached.
+-Backed up the database files.
+-Restarted MacromatiX LiveLink service.
+-Database was successfully reattached.
+
+LiveLink now shows 'Configured ID: 491'.
+LiveLink is now successfully processing and all cashiers are showing up in inForm.
+
+Verified in inFORM that cashiers are now showing in Cashier Settlement and are green.</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>SQL DO Examples</name>
+    <text>select top 25 * from Deferred_Order
+where last_modified_timestamp &gt; '2017-10-24'
+and customer_name = 'James Rich'
+and tran_sequence_number = '3977337'
+
+select top 250 * from Deferred_Order
+where last_modified_timestamp &gt; '2017-10-24'
+and fire_status = '1'
+and status = 'Finalized'
+
+Find DO for a specific customer:
+=========================
+select top 25 
+do.tran_sequence_number, do.tran_total, do.customer_name, do.status, do.submitted_datetime, do.pickup_datetime, do.last_modified_operator_id, do.last_modified_timestamp, PT.Terminal_id, de.Name, PT.tran_xml_compressed
+from Deferred_Order DO
+inner join POS_Transaction PT on PT.tran_sequence_number = DO.tran_sequence_number
+inner join d_employee de on de.employee_id = PT.operator_id
+where do.customer_name = 'Suzanne Dickerson'
+and do.pickup_datetime &gt; '2017-10-31'
+
+Find count of online orders for last 7 days:
+=================================
+select CONVERT(CHAR(8),do.submitted_datetime,10) as Date, count(do.submitted_datetime) as do_count
+from Deferred_Order do
+where do.description &lt;&gt; 'M-CARRYOUT'
+and CONVERT(CHAR(8),do.submitted_datetime,10) &gt;= dateadd(day,datediff(day,0,GetDate())- 7,0)
+group by CONVERT(CHAR(8),do.submitted_datetime,10)
+
+Find today's catering DO:
+====================
+select DO.submitted_datetime, * 
+from Deferred_Order DO
+where CONVERT(datetime, DO.fire_date, 101) = '2018-03-08'
+and DO.description &lt;&gt; 'M-CARRYOUT'
+order by DO.submitted_datetime desc
+</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>Lvl2 Email</name>
+    <text>Alicia Binion &lt;alicia.binion@cfacorp.com&gt;; Derrick Thomason &lt;derrick.thomason@cfacorp.com&gt;; Gary King &lt;gary.king@cfacorp.com&gt;; Katie Strickland &lt;katie.strickland@cfacorp.com&gt;; Nelson Gray &lt;nelson.gray@cfacorp.com&gt;; Richard Schmidt &lt;richard.schmidt@cfacorp.com&gt;; Sojaily Stewart &lt;sojaily.stewart@cfacorp.com&gt;; Craig Wilson &lt;craig.wilson@cfacorp.com&gt;; Britni Moore &lt;britni.moore@cfacorp.com&gt;</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>N@YS parts not listed</name>
+    <text>Parts that require OP payment from N@YS:
+==================================
+
+The part you are requesting has a cost associated with it that requires Operator payment. The parts available in N@YS are either for a zero dollar consumable part or hardware replacements. 
+
+For request such as CD10030, “APG CD Till”, please request as you have in the part or you can send request directly to me as I will reach out to the site for further instructions.
+
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>SPEP Information</name>
+    <text>SPEP
+=====
+
+To get clean downloads:
+Support Tools &gt; Return To Service &gt; Unit# &gt; LastPage &gt; POS File Group Config &amp; POS Full Download
+
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>TMUA</name>
+    <text>TMUA Tips:
+==========
+
+Error saving Manage POS Details / Setting Clock-In PIN:
+If employee shows in TMUA but getting error saving or setting Clock-In PIN, escalate to HR/Payroll.  Don't have to wait the 24 hours the KB calls for.
+
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>EOD</name>
+    <text>End Of Day:
+==========
+
+SMTools flooded with EOD errors &amp; EOD in SPSM shows in progress:
+Reboot POS Server (INC1648509)
+
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Tech Visits</name>
+    <text>What tech to send to install hardware:
+==============================
+
+S-Tech:
+POS Switches, etc
+Time critical installations
+Same day typically
+
+Strong Tech:
+Non-time critical hardware installations
+Wall port repair
+
+
+</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>VTask Request</name>
+    <text>Strong Tech has been requested to install XXX system in XXXXXXX.
+VTask: XXXXXXXXXXXXX
+
+Please coordinate with this unit to ensure that the tech arrives and assist he/she with the installation. Please contact the OP/Unit and let them know the tech has been requested.</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>POS Server return</name>
+    <text>: UPS call tag issued for POS server.   Please advise the restaurant that the call tag has been issued and provide them the tracking number.
+Tracking # NNNNNNNNNNNNNN</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Strong Tech Request</name>
+    <text>Unit XXXXX
+{unit name}
+{unit address}
+{unit city,state,zip}
+POC: XXXX 
+
+Issue: 
+
+Request: Tech to </text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Escalation Paths</name>
+    <text>Escalation Paths:
+==============
+
+Report Galleries / Financial Gallery -&gt; Financial Solutions
+KPS Routes -&gt; Onsite/KPS Configurations
+Service Model Report missing -&gt; POS Software
+Time Detail Report -&gt; HR/Payroll
+Inventory Activity Report -&gt; Supply Chain?
+Time Punch Report -&gt; Labor or HR/Payroll
+Geo Location -&gt; Samantha Blakes &lt;samantha.blakes@cfacorp.com&gt;; Gina Mann &lt;gina.mann@cfacorp.com&gt;
+Bit9 -&gt; ITOC (IT Operations Center)
+Email missing in Labor Sched -&gt; HR/Payroll
+Call Tag for Minuteman -&gt; vTask to Strong
+Replace POS Switch -&gt; NCR order (comes w/tech)
+Replace BO Switch -&gt; Systems Admins Hardware
+Replace CFA Switch -&gt; Systems Admins Hardware
+Replace KPS Monitor -&gt; Systems Admin Hardware
+Replace Patch Panel -&gt; Systems Admin Hardware
+Replace Kevlar Switch -&gt; HNS (Goes to Comcast)
+Cases logged with the CI: @Chick-fil-A Now -&gt; @Chick-fil-A Portal
+Dashboard issues -&gt; Operations &amp; Product Quality
+Phone number issues on CFAHome Restaurant Lookup -&gt; !Updates-Restaurant
+Phone number issues on CFA.com foundry sites -&gt; support@thefoundryagency.com, joanna marshall
+Google/Apple Maps locations wrong -&gt; Samantha Blakes, Gina Mann
+eRQA -&gt; vTASK -&gt; Compliance Metrix
+Search Result Links on CFA.com -&gt; Portal</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>How to Add Addtl iPad Order Takers</name>
+    <text>Added Additional iPad Order Takers:
+============================
+
+INC1653654
+
+Verified PIN 9955 is Ipad OrderTaker 5 (KB0051229)
+Per KB0056364, verified TakerFive, iPad OrderFive was not open and was not available to open. 
+- SPSM &gt; Store Operations &gt; Shift Operations &gt; Open iPad Shift
+
+Following KB0054483:
+In SPEP, selected and added the following to 03146
+TakerFive, iPad OrderFive
+TakerSix, iPad OrderSix
+TakerSeven, iPad OrderSeven
+TakerEight, iPad OrderEight
+
+In SPEP, Approved Employee Download for 03146
+- POS Management &gt; Approve Download
+In SPSM, Retrieved Download
+- Store Operations &gt; Retrieve Downloads
+
+Now in SPSM the 4 new iPad shifts are showing as available to Open.
+- SPSM &gt; Store Operations &gt; Shift Operations &gt; Open iPad Shift
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Hardware Replacements</name>
+    <text>Hardware Replacements:
+====================
+
+KPS Monitor -&gt; SYSTEM ADMINS HARDWARE
+Network Cables -&gt; SYSTEM ADMINS HARDWARE or N@YS
+PowerVar -&gt; N@YS
+KPS Radial Arm -&gt; Email Melissa &amp; Mark KB0044858
+Payment Terminal stand -&gt; Email Melissa &amp; Mark KB0044858
+KC3 Bracket -&gt; Email Melissa &amp; Mark Kimber
+Envysion Monitor -&gt; Strong vTask
+</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>Gather Node Info</name>
+    <text>Find Information For Nodes:
+======================
+
+Including serial numbers, etc.
+
+&gt; cinfo "node #" -rsparams
+
+&gt; cinfo ###
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Tail Files</name>
+    <text>How to tail SNExternalOrderMan
+==========================
+
+SET Restaurant=03981
+Title External Order Processor Log at Restaurant %RESTAURANT%
+color 03 &amp; mode con:cols=300 lines=400
+H:\ITCS\Helpdesk\omaldonado\tail\tail.exe /f "\\%RESTAURANT%.pos\c$\Program Files\Radiant\Lighthouse\ExternalOrders\LogFiles\SNExternalOrderMan.log" 
+
+Tail RadQLog.txt:
+==============
+SET Restaurant=03605
+Title RadQ Log at Restaurant %RESTAURANT%
+color 03 &amp; mode con:cols=300 lines=400
+H:\ITCS\Helpdesk\omaldonado\tail\tail.exe /f "\\%RESTAURANT%.pos\c$\Program Files\Radiant\FastPoint\RadQlog.txt" 
+
+Tail LH SQL ErrorLog:
+=================
+SET Restaurant=03273
+Title LHSiteDB ErrorLog at Restaurant %RESTAURANT%
+color 03 &amp; mode con:cols=300 lines=400
+H:\ITCS\Helpdesk\omaldonado\tail\tail.exe /f "\\%RESTAURANT%.pos\c$\Program Files\Microsoft SQL Server\MSSQL.2\MSSQL\LOG\ERRORLOG" 
+
+Tail HostManagerLog w/Findstr:
+==========================
+SET Restaurant=02111
+Title RadQ Log at Restaurant %RESTAURANT%
+color 03 &amp; mode con:cols=300 lines=400
+H:\ITCS\Helpdesk\omaldonado\tail\tail.exe /f "\\%RESTAURANT%.pos\c$\program files\radiant\epsilon\log\HostManager.log" | findstr "VXN"
+
+Tail Credit Processing Log:
+=====================
+SET Restaurant=03605
+Title RadQ Log at Restaurant %RESTAURANT%
+color 03 &amp; mode con:cols=300 lines=400
+H:\ITCS\Helpdesk\omaldonado\tail\tail.exe /f "\\%RESTAURANT%.pos\c$\Program Files\Radiant\Epsilon\Log\JournalConcordATL.log" 
+
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Lvl3 Email</name>
+    <text>Abuzar Burhani &lt;abuzar.burhani@cfacorp.com&gt;; Brandon Woods &lt;brandon.woods@cfacorp.com&gt;; Charles Holmes &lt;charles.holmes@cfacorp.com&gt;; Chip Hester &lt;chip.hester@cfacorp.com&gt;; David Doughty &lt;david.doughty@cfacorp.com&gt;; Elliott Simmons &lt;elliott.simmons@cfacorp.com&gt;; Joel Koh &lt;joel.koh@cfacorp.com&gt;; Kaliym Hill &lt;kaliym.hill@accesscfa.com&gt;; Nadeem Merchant &lt;nadeem.merchant@cfacorp.com&gt;; Omar Maldonado &lt;omar.maldonado@cfacorp.com&gt;; Ricky Jones &lt;ricky.jones@cfacorp.com&gt;; Tony Alexander &lt;tony.alexander1@cfacorp.com&gt; 
+ 
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>View Folder On CFA PC From HD Server</name>
+    <text>View PrinterDriver Folder on CFA PC from HD Server:
+==========================================
+
+\\XXXXX.pc\c$\utils\PrinterDriver
+
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Licensee Info</name>
+    <text>Licensee Information:
+=================
+
+Issues with truck orders go to the Distribution Center to be addressed.  Unit needs to let the DC know they are a licensee.</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>CFA PC Swap Information</name>
+    <text>CFA PC Swap Information:
+=====================
+
+Desktop A Password: 
+Outlook Password: 
+MICR Printer On Network? 
+3rd Party Printer Type: 
+3rd Party Printer Network/USB? </text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>NCR Email Request</name>
+    <text>Radial arm has been requested.
+SDA has been added to email thread for further updates.
+
+Please follow-up with restaurant and advise that it has been requested and approved.</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>TM missing from Operator table</name>
+    <text>User missing from Operator table:
+==========================
+User is in HR Payroll
+User is in TMUA
+User is in Labor Scheduling
+Recalled in TMUA
+Checked POS user box &gt; Save
+Unchecked POS user box &gt; Save
+Now exists in Operator table in SSUI
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Guest WiFi</name>
+    <text>Guest Wi-Fi
+=========
+
+gpv5yrbn2e</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>Team Member Name Update Info</name>
+    <text>Team Member Name Updates:
+=========================
+
+HR/Payroll
+TMUA
+TMUA &gt; Manage POS Details 
+Time Punch
+Labor Scheduling
+Shift Operations
+
+If Display Name is incorrect in TMUA and/or Labor Scheduling -&gt; HR/Payroll 
+If User Name is incorrect in Manage POS Details -&gt; IDM
+
+If the employee is still missing from TMUA escalate to HR/Payroll.
+If the employee is present in TMUA but missing from Labor Scheduling or other web apps escalate to HR/Payroll.
+If the employee is present in TMUA and all other web apps but missing from SPSM and the registers please confirm EP downloads are completing properly.
+If the employee name is incorrect in Shift Operations, perform Employee, Full, &amp; File Group Downloads.
+If an issue is found with the downloads escalate to NCR.</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Misc SQL Examples</name>
+    <text>Local Item Descriptions:
+===================
+SELECT
+RMIO.retail_modified_item_id, RMIO.receipt_description_default, RMIO.receipt_description_override, RMIO.retail_modified_item_name_default, RMIO.retail_modified_item_name_override, RMIO.last_modified_timestamp as RMIO_LastModDate, RMI.retail_modified_item_id, RMI.retail_item_id, RMI.condiment_subitem_id, RMI.item_type, RMI.receipt_description, RMI.retail_modified_item_name, RMI.extended_description, RMI.local_item, RMI.last_modified_timestamp as RMI_LastModDate, 
+LIAO.button_text_string, LIAO.button_type, LIAO.last_modified_timestamp as LIAO_LastModDate
+FROM Retail_Modified_Item_Override RMIO
+INNER JOIN Retail_Modified_Item RMI on RMI.retail_modified_item_id = RMIO.retail_modified_item_id
+INNER JOIN Local_Item_Authoring_Override LIAO ON LIAO.retail_modified_item_id = RMIO.retail_modified_item_id
+WHERE LIAO.button_type = 1
+
+Oldest Competitive Contest Item:
+=========================
+select top 1 f_contest_sales_item.last_modified_timestamp, * from f_contest_sales_item
+order by f_contest_sales_item.last_modified_timestamp asc
+
+Find Contest Results Data:
+=====================
+SELECT 
+sum(fc.quantity) as CNT, o.first_name, o.last_name, rmi.retail_modified_item_name
+FROM f_contest_sales_item fc 
+INNER join operator o on o.operator_id = fc.employee_id
+INNER join Retail_Modified_Item rmi on rmi.retail_modified_item_id = fc.sales_item_id
+WHERE fc.last_modified_timestamp &gt; '2017-11-01 00:30:00.000'
+AND fc.last_modified_timestamp &lt; '2017-12-21 12:30:00.000'
+AND o.first_name = 'David' AND o.last_name = 'Karkhut'
+AND rmi.retail_modified_item_name = 'Cow Calendar'
+GROUP BY o.first_name, o.last_name, rmi.retail_modified_item_name
+
+Find Speed of Service Results:
+========================
+select * from f_speed_of_service NOLOCK
+where business_date = '2017-12-26'
+and start_time_segment = '2017-12-23 20:45:00.000'
+and sales_dest_id = 1000002
+
+SELECT d.description, fsos.* FROM f_speed_of_service fsos WITH (NOLOCK)
+INNER join destination d WITH (NOLOCK) ON d.destination_id = fsos.sales_dest_id
+WHERE fsos.business_date BETWEEN 'YYYY-MM-DD' AND 'YYYY-MM-DD'
+AND CONVERT(varchar(8), fsos.start_time_segment, 108) = 'HH:MM:00'
+AND d.description = 'XXXXXXXXXX'
+
+select 
+tran_bump_time,tran_start_time, DATEDIFF(minute,tran_start_time,tran_bump_time) as MIN_DIFF, 
+convert(varchar(10), (((DATEDIFF(second,tran_start_time,tran_bump_time)%86400)%3600)%60)) as SEC_DIFF,
+* from f_speed_of_service 
+where start_time_segment = '2018-04-03 16:15:00'
+and qualifying_tran = 1 and tran_bump_time &lt;&gt; ''
+
+select 
+tran_bump_time,tran_start_time, DATEDIFF(minute,tran_start_time,tran_bump_time) as MIN_DIFF, 
+convert(varchar(10), (((DATEDIFF(second,tran_start_time,tran_bump_time)%86400)%3600)%60)) as SEC_DIFF,
+* from f_speed_of_service 
+where business_date = '2018-05-18' 
+and convert(char(5), start_time_segment, 108) = '19:00'
+and qualifying_tran = 1 and tran_bump_time &lt;&gt; '' 
+
+Find Current Signed In Shifts:
+=======================
+select o.first_name, o.last_name,  pos.* from POS_Shift pos
+inner join operator o on o.operator_id = pos.operator_id
+where pos.business_date =  '2017-12-28'
+
+Check If Refund Reasons Are Used
+============================
+SELECT COUNT(*) as CNT 
+FROM POS_Transaction_Detail NOLOCK
+WHERE reason_code_id &gt; 0
+AND last_modified_timestamp &gt; '2017-12-01' -- use last month as reference point due to size of table
+
+Display Specific Refund Reasons For A Transaction
+=========================================
+SELECT RC.reason_code_description as Reason, PTD.tran_sequence_number as TransNo, PTD.description as Desc
+FROM POS_Transaction_Detail PTD 
+LEFT JOIN Reason_Code RC on RC.reason_code_id = PTD.reason_code_id
+WHERE PTD.tran_sequence_number = nnnnnnn
+
+Find Orders In Deferred_Order Queue
+==============================
+select top 250 Deferred_Order.submitted_datetime, Deferred_Order.* from Deferred_Order
+where Deferred_Order.submitted_datetime &gt; '2018-01-11'
+order by Deferred_Order.submitted_datetime desc
+
+Find Orders Placed Online In Deferred_Order Queue
+===================================
+select top 250 Deferred_Order.submitted_datetime, Deferred_Order.* from Deferred_Order
+inner join Operator O on O.operator_id = Deferred_Order.original_operator_id
+where Deferred_Order.submitted_datetime &gt; 'yyyy-mm-dd'
+and Deferred_Order.description &lt;&gt; 'M-CARRYOUT'
+and O.operator_name = 'Online'
+order by Deferred_Order.submitted_datetime desc
+
+Find Transactions Where CFA Cards Were Sold
+===================================
+select 
+PTD.description, PT.*
+from POS_Transaction PT 
+inner join POS_Transaction_Detail PTD on PT.tran_sequence_number = PTD.tran_sequence_number 
+where PT.business_date = '2017-12-21'
+and PTD.description = 'CFA Card'
+
+Find Column Names
+==============
+select * from sys.columns where object_id = OBJECT_ID('dbo.f_speed_of_service')
+select * from sys.types
+
+
+Find Deferred Orders Based On Fire DateTime
+==================================
+select top 250 DO.submitted_datetime, 
+CONVERT(datetime, DO.fire_date, 101) + CONVERT(datetime, DO.fire_time, 108) as Comb_FireDT, 
+DO.* from Deferred_Order DO
+inner join Operator O on O.operator_id = DO.original_operator_id
+where CONVERT(datetime, DO.fire_date, 101) + CONVERT(datetime, DO.fire_time, 108) &gt; '2018-01-29'
+and DO.description &lt;&gt; 'M-CARRYOUT'
+--and O.operator_name = 'Online'
+and DO.status = 'Stored'
+and DO.fire_status = 0
+order by CONVERT(datetime, DO.fire_date, 101) + CONVERT(datetime, DO.fire_time, 108)
+
+Find Non-Settled Shifts For A Business Date:
+===================================
+select o.operator_id, o.first_name, o.last_name, ps.business_date, ps.shift_number, ps.shift_status, ps.shift_open_time, ps.shift_close_time,
+ps.*, o.* 
+from POS_Shift ps
+inner join operator o on o.operator_id = ps.operator_id
+where ps.business_date = '2018-02-09' 
+and ps.shift_status &lt;&gt; 'S'
+
+</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>Cannot enter customer pre-pay for DO on SP2017R4</name>
+    <text>Cannot enter customer pre-pay for DO on SP2017R4+
+==========================================
+
+If on SP 2017 R4 or above, and not getting prompt to enter customer CC on Payment Terminal for Deferred Orders, must setup option in Site Option Override for Customer Prepay.
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Log Files</name>
+    <text>Log File Locations:
+===============
+
+SMTools &gt; Last 4 hour period &gt; C:\Program Files\Radiant\Fastpoint\Data\MessagesMMDDYY_XXXX-XXXX.log
+SMTools &gt; Archived &gt; C:\Support\MMDDYY
+*Note* Copy to desktop and open in SMTools to read
+</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>iPOS iPad CCR Pairing Information</name>
+    <text>iPad Name - 
+CCR S/N - 
+TerminalID - 
+Credit Firmware - 
+Credit Serial Number - 
+Credit Registration Number - 
+iOS Version - 
+
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>NCR Escalation Template - Radiant</name>
+    <text>1. Who is site contact
+• Point of Contact name and phone number
+Note: Contact may the the Operator, Manager, or IT Trainer
+2. Current Restaurant State / Reason for Escalation	
+• One or two line statement of the issue, current state of the restaurant, and purpose for NCR escalation
+3. When did the issue begin	
+• List the date and approximate time of day the issue began.
+4. Details and History of Events
+• Description of issue in detail. Include expected and actual outcome
+• Specific POS software and/or hardware systems affected
+• Steps to recreate issue
+• Specific examples used while recreating issue and any other examples available from the restaurant such as transaction numbers, employee names, node numbers, error messages ect....
+• Pertinent troubleshooting steps performed by our analysts
+5. Include Logs and Supporting Data
+• Attach node screen captures and any pertinent screenshots to illustrate the symptom
+• Document any pos log snippets that apply
+• Attach related pos log files (compressed) and document a list of the attached logs
+6. Background information
+• Recent related vtasks
+• Current ServicePoint Version and date of upgrade
+• Current or recent pilots
+• Deployment list from ServiceNow</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>SQL Database Defaults</name>
+    <text>Database defaults:
+===============
+
+select * from Customized_Parameter 
+</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>TRM URL (EMV)</name>
+    <text>Tender Retail Management
+======================
+
+https://trm.cfahome.com
+
+Use CFA credentials</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>PRB CVC Comments</name>
+    <text>PRB0105382 - KB0062863 1-11-2018
+==============================
+NCR is currently investigating an issue with printing to specials printers after the upgrade to Service Point 2017 R4.  
+
+PRB0105384 - KB0061583 1-15-2018
+==============================
+CFA is currently investigating an issue with Spotlight showing a 500 error for last 90 day transactions.
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Call Tag Issued</name>
+    <text> : A call tag has been placed for the broken equipment.   See tracking information below and follow up with Restaurant and assist with any further questions.
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Remotely Pull PC Information</name>
+    <text>C:\Users\marty.elder&gt;wmic /node:00492.pc bios get serialnumber
+SerialNumber
+MXL5350PVD
+
+
+C:\Users\marty.elder&gt;wmic /node:00492.pc computersystem get model
+Model
+HP EliteDesk 800 G1 USDT
+
+
+C:\Users\marty.elder&gt;wmic /node:00492.pc os get osarchitecture
+OSArchitecture
+32-bit
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>SP Upgrade Path</name>
+    <text>Text File For SP Upgrade Information:
+==============================
+
+C:\Program Files\Radiant\InstallPackages\n.nn.n.nnnn\message.txt
+
+C:\Program Files\Radiant\InstalledVersion.txt</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>LiveLink MXConfig File</name>
+    <text>LiveLink MXConfig File:
+===================
+C:\Program Files\MacromatiX\LiveLinkService\Configs\MX.config
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>LiveLInk Helper Service App</name>
+    <text>ListLInk Helper Service App:
+======================
+C:\Program Files\MacromatiX\LiveLinkHelper\LiveLinkServiceHelper.exe
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Aloha Environment For Testing Connectivity</name>
+    <text>Aloha Environment For Testing Connectivity:
+===================================
+ping cfamemberlink.alohaenterprise.com
+
+
+Additional Notes:
+--------------------------
+With Sigma, we used to ping Aloha from the POS server before every Loyalty call was made. This resulted in a lot of Loyalty traffic clogging up the pipes to Aloha which caused poor performance, especially with iPOS. With the new REST API Loyalty Thin Client, we don’t test the connection before a Loyalty call is submitted. If the call times out, then we go into offline mode and start the 5-minute ping cycle to cfamemberlink.alohaenterprise.com which is what you see in Message logs. I’m pushing for NCR to lower that 5-minute time though to something much more frequent. That way, we can get back online more quickly but still won’t clog up the pipes with multiple calls per transaction.
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>KPS Monitor Replacement</name>
+    <text>Escalation to SYSTEM ADMINS HARDWARE 
+
+Request: Please ship a new KPS monitor 
+
+Additional Information: 
+KPS ###  monitor will not keep a display. Video goes white after a short period. 
+Monitor has been swapped with another working monitor and issue follows monitor. 
+
+MN: NNNN
+SN: NNNNNNNNNNNNNNNNN</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Error Saving In TMUA</name>
+    <text>Masqueraded as OP
+Verified team member {insert name here} is in HR/Payroll
+Verified {insert name here} record in TMUA errors when saving:
+"JCA Binding execute of Reference operation 'MaintainPOSInfo' failed due to: Stored procedure invocation error. Error while trying to prepare and execute the APPS.CFA_HR_POS_WRAPPERS.MAINTAIN_POS_INFO API."
+Verified {insert name here} is not in Labor Scheduling
+Verified {insert name here}  is not in Time Punch
+Unable to verify {insert name here} in OIM (site can't be reached)
+
+-------------------------------
+
+Escalation to HR/Payroll:
+
+Issue: TMUA errors when trying to save team member {insert name here} 
+Error: "JCA Binding execute of Reference operation 'MaintainPOSInfo' failed due to: Stored procedure invocation error. Error while trying to prepare and execute the APPS.CFA_HR_POS_WRAPPERS.MAINTAIN_POS_INFO API."
+Request: Please assist in correcting {insert name here} record in TMUA
+
+Additional Information:
+{insert name here} is in HR/Payroll
+{insert name here} is not in Labor Scheduling
+{insert name here} is not in Time Punch
+Unable to check OIM for {insert name here} at this time
+
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>MSSQL Paths</name>
+    <text>MSSQL Paths:
+============
+
+Standard DB:
+C:\Program Files\Microsoft SQL Server\MSSQL.1\MSSQL\LOG
+
+LiveLink:
+C:\Program Files\Microsoft SQL Server\MSSQL.2\MSSQL\LOG
+
+</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>Configured ID Missing In LiveLink Helper</name>
+    <text>Configured ID Missing In LiveLink Helper:
+=================================
+
+In Services:
+
+Stopped MacromatiX LiveLink
+Stopped SQL Server (MX)
+Started SQL Server (MX)
+Started MacromatiX LiveLink
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>NCR Escalation - KB0054772 - Tips Error</name>
     <text>
-      <![CDATA[Thank you for using the Support Templates application.  This application was created to give support analysts a way to use & manage the various templates they use day to day in their job.
-      
-Templates are commonly used sections of text that analysts use through out the day in their jobs.  This can include case updates for ordering hardware or recording tasks they complete that have the same steps every time.
-      
-This app is intended to replace the use of notepads or Word documents by being easier to find a specific template that's needed.  Rather than scrolling through pages of notes, you just click the name of the template, it shows up in the text box, & you click the Copy to Clipboard button.
-      
-The app is very lightweight & only accesses a user's clipboard to copy to it.
-This app is an original concept & was not duplicated from another application.
-Any similarities to any other application is purely coincidental.
-      
-Issues with the application can be reported to marty.elder@gmail.com.
-      
-Thanks for using the Support Templates app.  This entry can be deleted from the Templates list at any time.
-      
-    ]]>
-    </text>
+Site Name: Truett's Chick-fil-A - Newnan
+Site Number: 70045 
+Site Phone: 770-502-9502
+Operator Name: Randy Burgess
+
+==================================== 
+
+1. Who is the site contact? 
+MOD - Justin Sinclair 770-502-9502 (store)
+MOD (morning) - Tracey Holman 770-328-0372 (c) 
+Operator - Randy Burgess
+
+2. When did the issue begin? 
+It was reported to CFA Helpdesk on 3/5/18, around 10:00 AM EST. 
+
+3. What release of Service Point was the site running on when the issue occurred? 
+Store Number - 70045 
+Upgrade Name - 7.18.0.1093 
+Upgrade Status - Upgrade completed sucessfully 
+Timestamp - 2018-02-25 06:27:33.453 
+
+4. What is the issue? 
+Site is unable to add credit tips to transactions. 
+When attempting, they receive error message: 
+"Finalization of authorized credit transaction is already in progress on another POS terminal, only one POS terminal can perform this operation at time." 
+
+5. List all hardware/software changes that occurred directly prior to the issue occurring 
+ServicePoint version upgraded to 2018 R1 on 2/25/2018 7:03:21 AM 
+ServicePoint version upgraded to R4 Patch 1 on 1/21/2018 6:23:04 AM 
+
+6. What process was being completed when the issue occurred 
+Restaurant personnel are attempting to retrieve credit tips on registers. 
+
+7. What triage steps did you take in an effort to rectify the issue? 
+-Confirmed ServicePoint is on the business day is current (3/5)
+-Rebooted POS server. 
+-Rebooted all registers. 
+-Confirmed there are active deferred orders.
+-- Attached copy of Deferred Order report
+-Tracey states there are 40+ transactions with the issue starting this morning
+-Received 5 of the affected transaction numbers:
+12786347
+12785181
+12785685
+12785737
+12785850
+--Can send more if required
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Cannot Take Credit At All</name>
+    <text>Cannot Take Credit At All:
+====================
+
+INC1773106
+Hard drive on POS Server was full
+Couldn't take credit via network or locally due to Epsilon not being able to store data
+Free up space to resolve
+-- Remove unnecessary files
+-- Remove old user profiles
+-- Remove old DBs (NCR to do)
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Signature Liine Doesn't Print On Credit Over Limit</name>
+    <text>Signature Liine Doesn't Print On Credit Over Limit:
+=======================================
+
+If signature line doesn't print on a receipt when the amount charged is over the limit setup in SPEP,  the problem is likely that the receipt printer in LHDevCfg is not setup for 'Credit receipt print type'.
+
+Also can view in DB table MM_Logical_Printer under column 'credit_receipt_print_type_group_id' (will be all zeros).
+
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Find Information For Windows Machine</name>
+    <text>Find Information For Windows Machine:
+================================
+
+WMIC csproduct get vendor,name,identifyingnumber</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>NCR Email Contacts</name>
+    <text>NCR Email Contacts:
+================
+Melissa.Torres@ncr.com; Sean.Lehnherr@ncr.com;Marija.Dacic@ncr.com</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>Duplicate Generic Order Takers</name>
+    <text>Duplicate Generic Order Takers:
+=========================
+
+If you see 2 of the same generic order taker (generic or ipad) in Click-In PINs Report, this is due to there being both Enterprise and BU versions assigned to the restaurant.
+They should only have the Enterprise order taker.  You can removed the BU version in SPEP and do an employee download.</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>Hardware Ordering</name>
+    <text>Hardware Ordering:
+===============
+
+USB cable for handheld scanner to P1235:
+1639-K251	Scan: Symbol CBA-U01-S07ZAR USB Cable: Series A Connector, 7ft. Straight
+
+USB cable for coin dispenser to P1235:
+1639-K040	CB10270:USB 2.0 Cable(6ft.) USBA-USBB
+
+P1235 Power Cables:
+1639-K067                           P1235 Power Cable                                                                                                       
+7761-K120                           P1235 Power Brick                                                                                                        
+1639-K335	Verifone MX Powered USB Yellow Berg Cable - vendor PN: 23998-02-R	1	$34.00
+                     
+
+7743-K312	P120F312:P1230/P1530 Wall Mt Assy	1	$60.00
+
+</text>
+    <type>General</type>
+  </template>
+  <template>
+    <name>Addtl Hardware Request</name>
+    <text>Request for an additional XXXXXXXXXX  for XXXXXX
+
+Business Reason:
+
+
+Location:
+
+
+Electrical / Network:
+
+
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>BT Receipt Printer New Repair Options</name>
+    <text>Bluetooth Receipt Printer New Repair Options:
+====================================
+
+You can place a new order via the following link:
+https://www.moredirect.com/app/Login/AuthLink?auth=e3362d0ea5f51fd4d359f563a8b19061fce2a725
+ 
+Contact an Epson Authorized Repair Center for repair:
+from the https://epson.com/point-of-sale website you can search for a repair center in your area by zip code. Click on "Service." Then, "Authorized Service Provider Program or call 562/276-1314, operator needs to take printer to repair location and they will need a copy of MD invoice as proof of purchase.
+
+</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>Onsite Contacts (From Kevin Turner)</name>
+    <text>Onsite Contacts (From Kevin Turner):
+=============================
+Al Duke &lt;al.duke@onsiteris.com&gt;; Danny Smith &lt;Danny.Smith@onsiteris.com&gt;
+</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>MoreDirect Cash Drawer Replacement</name>
+    <text>vTask ############# has been sent to More Direct for warranty replacement decision on the cash drawer replacement.
+
+Please follow the updates from MoreDirect and advise the restaurant of the replacement status from MoreDirect.
+
+As FYI while awaiting MoreDirect's decision:
+If the cash drawer is outside of it's warranty period of 30 days, the restaurant will need to either have it repaired by contacting APG or order a new cash drawer directly from MoreDirect.
+
+New Purchase:
+https://www.moredirect.com/app/Login/AuthLink?auth=e3362d0ea5f51fd4d359f563a8b19061fce2a725
+
+For APG repairs:
+http://www.cashdrawer.com
+763.571.5000
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>MoreDirect BT Receit Printer Replacement</name>
+    <text>vTask ############# has been sent to More Direct for warranty replacement decision on the BT receipt printer replacement.
+
+Please follow the updates from MoreDirect and advise the restaurant of the replacement status from MoreDirect.
+
+As FYI while awaiting MoreDirect's decision:
+Contact an Epson Authorized Repair Center for repair: 
+from the https://epson.com/point-of-sale website you can search for a repair center in your area by zip code. Click on "Service." Then, "Authorized Service Provider Program or call 562/276-1314, operator needs to take printer to repair location. 
+
+New purchase: 
+https://www.moredirect.com/app/Login/AuthLink?auth=e3362d0ea5f51fd4d359f563a8b19061fce2a725 
+
+Price for unit is $553.99.
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>LHStationConfig Backup Path</name>
+    <text>LHStationConfig Backup Path:
+=======================
+
+S:\HD Level 2 - Permanent\LHStationConfigBackup</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>e355 Replacement Ticket Notes</name>
+    <text>Please advise the restaurant that we have placed a Priority Exchange order with VeriFone, Work Order # . They advise that the store should receive the replacement e355 device in 1-3 business days.  The restaurant will need to keep all the current cables and belt case as they are not replaced.  
+ 
+Note, A UPS return label will be included inside the box to return the defective card reader () to VeriFone. Please do so as soon as possible after receiving the replacement device, marking the box with Verifone Work Order # . 
+
+--------------------------------------
+
+Hello, 
+We have placed a Priority Exchange order with VeriFone, Work Order # .  They advise that the store should receive the replacement e355 device in 1-3 business days.  Please keep all the current cables and belt case as they are not replaced.    
+ 
+Note, A UPS return label will be included inside the box to return the defective card reader () to VeriFone.  Please do so as soon as possible after receiving the replacement device, marking the box with VeriFone Work Order # . 
+ 
+Please let us know how many e355 chargers you currently have so we can send you replacements free of charge. Once you receive the replacement chargers, please discard the current chargers, Thanks. 
+
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Incident Review</name>
+    <text>[ Subject:  Analyst I Ticket Review || INC # ]
+
+Hi Leadership,
+
+This email is to request a Ticket Review for [INCxxxxxx] for [Analyst I – xxxxxx]
+
+Analyst IIs have reviewed the Incident and found the following entrance criterion missed.
+•	Include short details into what was missed.
+•	
+•	
+
+
+Additional Notes:
+
+
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Email template for 2 switches and tech</name>
+    <text>Good afternoon,
+I have made two Switch Replacements to replace the POS Switch and the BO Switch and placed another request for the S-Tech. Can we please make sure the Tech arrives with both switches.
+- Hardware has been requested via NNNNNN
+- Hardware has been requested via NNNNNN
+S-TECH REQUEST
+The Call Number for this request is NNNNNN
+
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Remotely Pull SQL Version From POS Server</name>
+    <text>Remotely Pull SQL Version From POS Server:
+==================================
+
+SQL Server 2005 = 90
+SQL Server 2012 = 110
+SQL Server 2014 = 120
+
+dir "\\nnnn.pos\c$\Program Files\Microsoft SQL Server"
+
+\\nnnnn.pos\c$\Program Files\Microsoft SQL Server\nnn\Setup Bootstrap\Log\Summary.txt
+
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>CFA Cloud Order Processor</name>
+    <text>CFA Cloud Order Processor:
+=====================
+
+Pre- SP 2018 R2 -&gt; Can be installed from SCCM
+SP 2018 R2+ -&gt; Delivered on the SP build</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Replacement Server Shipped CVC</name>
+    <text>Replacement POS Server has shipped on tracking number NNNNNNNNNNNNNNNNNNN.  The server should arrive the morning of NN/NN/NNNN.   HELP will contact the restaurant tomorrow to verify receipt of the new server and to schedule the swap after closing.  Please leave the new server in the box and do not connect it until HELP has contacted the restaurant to perform the server swap.   </text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Services that should be running on POS Server</name>
+    <text>Services that should be running on POS Server:
+===================================
+
+KB0065676</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Replacement Server Ordered CVC</name>
+    <text>Requesting a replacement POS Server.
+Once shipping information is available another ServiceNow communication will be sent with tracking and ETA.  
+Please be aware that once the replacement server has arrived, it is vital to leave the replacement server in the box until CFA HELP contacts your restaurant to schedule the server swap for after hours.  Please do not connect the new server until instructed to do so by HELP after closing on the evening of the swap.
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Replacement Server Order</name>
+    <text>Escalation to SYSTEM ADMINS HARDWARE
+
+Issue: Consistent connectivity issues with server with large packet loss causing processing issues.
+Request: Please build and ship a replacement POS Server
+
+Additional Information:
+SerialNumber: 2UA6321YTK
+Model: HP EliteDesk 800 G2 DM 35W
+
+Service Point release: 7.18.0.2070 
+SQL Version: Microsoft SQL Server 2005 - 9.00.5000.00 (Intel X86)
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>VXN URL</name>
+    <text>VXN URL:
+=========
+https://vxn1.datawire.net/
+
+Enter in browser on POS Server to test connectivity for credit/loyalty</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Replacement CFA PC Ordered CVC</name>
+    <text>Requesting a replacement CFA PC be shipped.
+When the pc is staged it will be loaded with the most recent backup of the documents from the CFA PC.
+Once the PC ships we will send a notification with an expected ETA and tracking number.
+Once the PC arrives, please reach back out to HELP via the 800 number of Self-Service to have an analyst assist with the installation of the CFA PC.</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Self Service URL</name>
+    <text>https://cfaprod.service-now.com/cfahelp?id=cfahelp_index</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Onsite Contacts for Hardware Replacements</name>
+    <text>Onsite Contacts for Hardware Replacements:
+-----------------------
+stephen.reese@onsiteris.com
+chris.n.elliott@onsiteris.com
+Chris.Bennett@onsiteris.com
+andrew.lunsford@onsiteris.com
+</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>Findstr</name>
+    <text>FINDSTR:
+==========
+
+findstr "VXN" "&lt;C:\program files\radiant\epsilon\log\HostManager.log&gt;" &gt; c:\Temp\VXN-Errors.txt
+
+Remote Findstr:
+=============
+C:\Users\derrick.thomason&gt;findstr "VXN" "&lt;\\02722.pos\c$\program files\radiant\epsilon\log\HostManager.log" &gt; c:\Temp\Remote-Log.txt 
+
+Tailing with Findstr:
+===============
+SET Restaurant=02143
+Title RadQ Log at Restaurant %RESTAURANT%
+color 03 &amp; mode con:cols=300 lines=400
+H:\ITCS\Helpdesk\omaldonado\tail\tail.exe /f "\\%RESTAURANT%.pos\c$\program files\radiant\epsilon\log\HostManager.log" | findstr "VXN"
+
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Self Service Promotion CVC</name>
+    <text>If you have any further questions about this please feel free to call or update this incident in our Self Service Portal on @CFAHome by clicking the Help button on the top right corner of the page.
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>NCR Hardware CVC</name>
+    <text>A replacement aaaaaaaaaaa has been ordered for aaaaaaaaaa. 
+
+A callback has been scheduled for the morning/afternoon/evening on mm/dd/yyyy.
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>NCR Escalation - Blank</name>
+    <text>
+Site Name: 
+Site Number: 
+Site Phone: 
+Operator Name: 
+
+==================================== 
+
+1. Who is the site contact? 
+
+2. When did the issue begin? 
+
+3. What release of Service Point was the site running on when the issue occurred? 
+
+4. What is the issue? 
+
+5. List all hardware/software changes that occurred directly prior to the issue occurring 
+
+6. What process was being completed when the issue occurred 
+
+7. What triage steps did you take in an effort to rectify the issue? 
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Hardware CB Required</name>
+    <text>Hardware Callback Required:
+=========================
+
+POS Register
+POS PT
+DT Wireless Scanner
+Kiwi
+POS Server
+CFA PC
+POS Switch
+BO Switch
+Network Equipment (Router, Modem, Cradlepoint, Access Points)
+</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>Loomis Email Addresses</name>
+    <text>Loomis Email Addresses:
+====================
+SafePoint@us.loomis.com;NationalCallCenter@us.loomis.com;CPR@us.loomis.com</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>Replacement CFA PC Shipped CVC</name>
+    <text>A replacement CFA PC has shipped on tracking number xxxxxxxxxxxxxxxxxxxxxx.
+When the pc is staged it will be loaded with the most recent backup of the documents from the CFA PC.
+Once the PC arrives, please reach back out to HELP via the 800 number of Self-Service to have an analyst assist with the installation of the CFA PC.</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>Onsite RIS - Christopher Elliotts</name>
+    <text>Onsite RIS - Christopher Elliotts
+=========================
+Display name                                    Email Address
+Christopher Elliott(me)                  Christopher.Elliott@OnsiteRIS.com         
+Chris Elliott (build tech)                 Chris.N.Elliott@OnsiteRIS.com 
+</text>
+    <type>General</type>
+  </template>
+  <template>
+    <name>VNC PWDS</name>
+    <text>2017_Q4: ITzenHOuSERA^</text>
+    <type>Misc</type>
+  </template>
+  <template>
+    <name>NCR Lead Email Contacts</name>
+    <text>NCR Lead Email Contacts:
+======================
+
+ATLFoodservice, CFA Escalations (CA230253@ncr.com); ATLFoodservice, CFA Support &lt;CFASupport.ATLFoodservice@ncr.com&gt;; ATLFoodservice, Leads (Leads.ATLFoodservice@ncr.com); ATLFoodservice, Support All (SupportAll.ATLFoodservice@ncr.com)
+</text>
+    <type>Notes</type>
+  </template>
+  <template>
+    <name>Strong Tech Requested</name>
+    <text>A Strong Tech has been requested to replace: XXXXX 
+vTask Number: XXXXXXX 
+
+Strong will contact the restaurant to coordinate the technician's visit.
+
+Please coordinate with this unit to ensure that the tech arrives and assist he/she with the installation. Please contact the OP/Unit and let them know the tech has been requested.
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>CFACloudProcessor will not start</name>
+    <text>CFACloudProcessor will not start:
+==========================
+CFA Cloud Service stuck at 'Starting' status
+
+c:\Program Files\Radiant\Lighthouse\Bin\ CFACloudOrderProcessor.exe.config missing key values.
+
+Copy missing values from another site (similar).
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>XML query Windows Event Viewer</name>
+    <text>XML query Windows Event Viewer:
+============================
+
+&lt;QueryList&gt;
+  &lt;Query Id="0" Path="System"&gt;
+    &lt;Select Path="System"&gt;*[EventData[(Data='SNRealTimeExporter')]]&lt;/Select&gt;
+  &lt;/Query&gt;
+&lt;/QueryList&gt;
+
+Based on:
+- &lt;EventData&gt;
+  &lt;Data Name="param1"&gt;SNRealTimeExporter&lt;/Data&gt; 
+
+
+-----------
+
+&lt;QueryList&gt;
+  &lt;Query Id="0" Path="Application"&gt;
+    &lt;Select Path="Application"&gt;*[System[Provider[@Name='SSExternalOrderProcessor']]]&lt;/Select&gt;
+  &lt;/Query&gt;
+&lt;/QueryList&gt;
+
+Based on:
+- &lt;System&gt;
+  &lt;Provider Name="SSExternalOrderProcessor" /&gt; 
+
+</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Server offline on registers</name>
+    <text>Server Offline On Registers:
+---------------------------------------
+Check status of:
+
+SNPOSServicesProcessor </text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>LEAN ipad password</name>
+    <text>dlps#####
+123456 or 1234567</text>
+    <type>Tips</type>
+  </template>
+  <template>
+    <name>Checkmark</name>
+    <text>√ </text>
+    <type>Misc</type>
+  </template>
+  <template>
+    <name>Replacement CFA PC Shipped</name>
+    <text>: The hardware has shipped. See tracking information below and follow up with Restaurant and assist with any installation.
+
+{insert shipping information here}
+
+Please follow KB0053124 to perform a CFA PC hotspare once the CFA PC arrives.
+</text>
+    <type>Templates</type>
+  </template>
+  <template>
+    <name>e355 Charger Work Note</name>
+    <text>We currently are unable to provide addtional spare chargers due to our supply being extremely limited.  
+By mid-October all stores with E355s will be shipped the new upgraded charger for their E355s, less those who have already been shipped the ‘B’ charger (there is a large B on the plug label).
+
+If their chargers are defective, we can submit them for possible replacement, please ask the restaurant to hold onto that one as we will want to send them a return label so we can have Verifone inspect them!  
+
+Note, once the ‘B’ chargers have been shipped to all the stores, unless there is an incorrect quantity shipped to them we will not be provided chargers to ship to the restaurants as replacements.  Stores will need to order and purchase them via the Verifone Estore.  KB0056792.</text>
     <type>Templates</type>
   </template>
 </templates>

@@ -20,5 +20,6 @@ Thanks for using the Support Templates app.  This entry can be deleted from the 
     ]]>
     </text>
     <type>Templates</type>
+    <desc>Use this to describe the template.  Text in this field will not be copied.</desc>
   </template>
 </templates>

@@ -10,17 +10,12 @@ using System.Windows.Forms;
 
 namespace SupportTemplates
 {
-    public partial class VersionInfo : Form
+    public partial class SplashScreen : Form
     {
-        public VersionInfo()
+        public SplashScreen()
         {
             InitializeComponent();
-            versionLbl.Text = ProductVersion;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

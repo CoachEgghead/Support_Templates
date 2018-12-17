@@ -118,15 +118,66 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>- Added font size slider
-- Font size is saved when closing window
-- Font size is restored to last state when open app
-- Added version information window
-- Window size is saved when closing window
-- Window size is restored to last state when open app
-- List width is saved when closing window
-- List width is restored to last state when open app
-- Fixed the installer to upgrade to new build instead of having to remove older version first
+    <value>v1.9.9
+• Bug fixes and enhancements to the save to text file feature.
+
+v1.9.8
+• Added ability to save current template to a text file.
+
+v1.9.6
+• Added Description text box at bottom so users can add descriptive text that will not be copied.
+
+v1.9.2
+• AutoBackup feature added
+• AutoBackup settings added to Settings page
+• User can set frequency in days and location of backup
+
+v1.9.1
+• Clear button after a search returns application to opening state
+• Added Settings menu under Tools
+• Added Settings form to save Default Template to use when opening app
+
+v1.8.9
+• Fixed issues saving template from search
+• Saving changes now applies the Type correctly no matter where you are
+• Fixed sorting issue on Export display
+
+v1.8.7
+• Added Apply to font dialog
+• Auto-refresh moved to new Tools menu
+• Updated button animations
+
+v1.8.3
+• Updated action icons
+• Download link updated
+
+v1.8.1
+• Created new install / update model
+• Will check for new updates every 7 days
+• Added check for update button to About screen
+• Cleaned up some code and comments
+• Added code to check for previous versions file when upgrading to 1.7.x or higher
+
+v1.6.5
+• Import has been rewritten. Overwrite and Insert options are now available.
+• Search text is now highlighted in the text box.
+• Font dialogs added to both the listbox and main textbox.
+
+v1.6.2
+• New Export feature allows you to save any or all of your templates to an XML.
+• The OLD Export function is now called Backup.  
+• Added ability to change color scheme of list and text boxes.
+• Link to GitHub site for downloading latest version.
+
+v1.5.x
+• Search now checks name and text of template
+• Relabeled buttons
+• Type dropbox opens on click
+• Added splash screen
+• Added right click dialog to template list
+• Main text box is now rich text
+-- Gives more functionality ability in the future
+• Fixed issue with rich text box copy no line feeding correctly
 </value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />

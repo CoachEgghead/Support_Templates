@@ -12,7 +12,7 @@ namespace SupportTemplates.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.1.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.8.0.0")]
     public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -68,6 +68,233 @@ namespace SupportTemplates.Properties {
             }
             set {
                 this["InitialSplitterDiff"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color InitialTBForeColor {
+            get {
+                return ((global::System.Drawing.Color)(this["InitialTBForeColor"]));
+            }
+            set {
+                this["InitialTBForeColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color InitialTBBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["InitialTBBackColor"]));
+            }
+            set {
+                this["InitialTBBackColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color InitialLBForeColor {
+            get {
+                return ((global::System.Drawing.Color)(this["InitialLBForeColor"]));
+            }
+            set {
+                this["InitialLBForeColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color InitialLBBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["InitialLBBackColor"]));
+            }
+            set {
+                this["InitialLBBackColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 9pt")]
+        public global::System.Drawing.Font InitialTBFont {
+            get {
+                return ((global::System.Drawing.Font)(this["InitialTBFont"]));
+            }
+            set {
+                this["InitialTBFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 9pt")]
+        public global::System.Drawing.Font InitialFont {
+            get {
+                return ((global::System.Drawing.Font)(this["InitialFont"]));
+            }
+            set {
+                this["InitialFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9")]
+        public float InitialLBSize {
+            get {
+                return ((float)(this["InitialLBSize"]));
+            }
+            set {
+                this["InitialLBSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 9pt")]
+        public global::System.Drawing.Font InitialLBFont {
+            get {
+                return ((global::System.Drawing.Font)(this["InitialLBFont"]));
+            }
+            set {
+                this["InitialLBFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color InitialForeColor {
+            get {
+                return ((global::System.Drawing.Color)(this["InitialForeColor"]));
+            }
+            set {
+                this["InitialForeColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color InitialBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["InitialBackColor"]));
+            }
+            set {
+                this["InitialBackColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int DefaultTemplate {
+            get {
+                return ((int)(this["DefaultTemplate"]));
+            }
+            set {
+                this["DefaultTemplate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int AutoBackup {
+            get {
+                return ((int)(this["AutoBackup"]));
+            }
+            set {
+                this["AutoBackup"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public string ABFrequency {
+            get {
+                return ((string)(this["ABFrequency"]));
+            }
+            set {
+                this["ABFrequency"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ABLocation {
+            get {
+                return ((string)(this["ABLocation"]));
+            }
+            set {
+                this["ABLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime ABDate {
+            get {
+                return ((global::System.DateTime)(this["ABDate"]));
+            }
+            set {
+                this["ABDate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9")]
+        public float InitialDBSize {
+            get {
+                return ((float)(this["InitialDBSize"]));
+            }
+            set {
+                this["InitialDBSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color InitialDBForeColor {
+            get {
+                return ((global::System.Drawing.Color)(this["InitialDBForeColor"]));
+            }
+            set {
+                this["InitialDBForeColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color InitialDBBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["InitialDBBackColor"]));
+            }
+            set {
+                this["InitialDBBackColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 9pt")]
+        public global::System.Drawing.Font InitialDBFont {
+            get {
+                return ((global::System.Drawing.Font)(this["InitialDBFont"]));
+            }
+            set {
+                this["InitialDBFont"] = value;
             }
         }
     }
