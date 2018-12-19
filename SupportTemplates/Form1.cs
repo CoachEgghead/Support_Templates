@@ -82,6 +82,7 @@ namespace SupportTemplates
 
         private const int SW_MAXIMIZE = 9; // Restore window to foreground as it was previously sized
 
+        // Currently not used
         enum KeyModifier
         {
             None = 0,
@@ -112,10 +113,10 @@ namespace SupportTemplates
             int id = 0;     // The id of the hotkey. 
             int defaultHK1 = Properties.Settings.Default.DefaultHotKey1;
             var defaultHK2 = Properties.Settings.Default.DefaultHotKey2;
-
+            Keys defaultKey = (Keys) Enum.Parse(typeof(Keys), defaultHK2);
+            RegisterHotKey(this.Handle, id, defaultHK1, defaultKey.GetHashCode());       // Register saved default as global hotkey. 
             //RegisterHotKey(this.Handle, id, (int)KeyModifier.Control, Keys.E.GetHashCode());       // Register Control + E as global hotkey. 
-            //RegisterHotKey(this.Handle, id, defaultHK1, Enum.TryParse(defaultHK2, out key).GetHashCode());       // Register Control + W as global hotkey. 
-            RegisterHotKey(this.Handle, id, defaultHK1, Keys.E.GetHashCode());       // Register Control + E as global hotkey. 
+
         }
 
         /// <summary>
@@ -1461,7 +1462,6 @@ namespace SupportTemplates
             us.StartPosition = FormStartPosition.CenterScreen;
             us.Show();
             us.Refresh();
-
         }
 
         /*

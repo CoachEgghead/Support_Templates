@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserSettings));
             this.defaultTempCb = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.defaultHK = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.lastBackupTb = new System.Windows.Forms.TextBox();
             this.backupDateLbl = new System.Windows.Forms.Label();
             this.backupLocTb = new System.Windows.Forms.TextBox();
@@ -62,6 +64,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.defaultHK);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.lastBackupTb);
             this.panel1.Controls.Add(this.backupDateLbl);
             this.panel1.Controls.Add(this.backupLocTb);
@@ -79,6 +83,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(402, 301);
             this.panel1.TabIndex = 1;
+            // 
+            // defaultHK
+            // 
+            this.defaultHK.Location = new System.Drawing.Point(236, 180);
+            this.defaultHK.Name = "defaultHK";
+            this.defaultHK.Size = new System.Drawing.Size(145, 20);
+            this.defaultHK.TabIndex = 14;
+            this.defaultHK.KeyDown += new System.Windows.Forms.KeyEventHandler(this.defaultHK_KeyDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label1.Location = new System.Drawing.Point(14, 180);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Default HotKey";
             // 
             // lastBackupTb
             // 
@@ -270,5 +292,7 @@
         private System.Windows.Forms.Label backupFreqLbl;
         private System.Windows.Forms.TextBox lastBackupTb;
         private System.Windows.Forms.Label backupDateLbl;
+        private System.Windows.Forms.TextBox defaultHK;
+        private System.Windows.Forms.Label label1;
     }
 }

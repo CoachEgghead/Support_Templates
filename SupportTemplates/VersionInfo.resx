@@ -118,8 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>v1.10.0
-• Added global hotkey to bring window to foreground (Ctrl-E)
+    <value>v1.10.1
+• Added global hotkey to bring window to foreground.
+• Added setting for user defined hotkey.
 
 v1.9.9
 • Bug fixes and enhancements to the save to text file feature.

@@ -56,6 +56,29 @@ namespace SupportTemplates
                 backupDateLbl.Enabled = true;
             }
 
+            int defaultModifier = Properties.Settings.Default.DefaultHotKey1;
+            var defaultModText = "";
+            switch (defaultModifier)
+            {
+                case 1:
+                    defaultModText = "Alt";
+                    break;
+                case 2:
+                    defaultModText = "Control";
+                    break;
+                case 4:
+                    defaultModText = "Shift";
+                    break;
+                case 8:
+                    defaultModText = "WinKey";
+                    break;
+                default:
+                    defaultModText = "Control";
+                    break;
+            }
+            var defaultKeyCode = Properties.Settings.Default.DefaultHotKey2;
+            defaultHK.Text = defaultModText + "-" + defaultKeyCode;
+
         }
 
         public void UserSettings_FormClosing(Object sender, FormClosingEventArgs e)
@@ -75,9 +98,36 @@ namespace SupportTemplates
                 Properties.Settings.Default.ABLocation = backupLocTb.Text.ToString();
             }
 
+            //12-18-18 Hotkey code
+            string hotKeyValue = defaultHK.Text;
+            string[] subStrings = hotKeyValue.Split('-');
+            var ModifierKeys = subStrings[0];
+            int defaultModVal = 0;
+            switch (ModifierKeys)
+            {
+                case "Alt":
+                    defaultModVal = 1;
+                    break;
+                case "Control":
+                    defaultModVal = 2;
+                    break;
+                case "Shift":
+                    defaultModVal = 4;
+                    break;
+                case "WinKey":
+                    defaultModVal = 8;
+                    break;
+                default:
+                    defaultModVal = 2;
+                    break;
+            }
+            Properties.Settings.Default.DefaultHotKey1 = defaultModVal;
+            Properties.Settings.Default.DefaultHotKey2 = subStrings[1];
+
             Properties.Settings.Default.Save();
 
-            MessageBox.Show("Your settings have been saved!", "Save Settings");
+            MessageBox.Show("Your settings have been saved!\n\r" +
+                "\n\rIf you changed the default hotkey, it will take effect the next time the app is started.", "Save Settings");
         }
 
         private void closeBtn_Click(object sender, EventArgs e)
@@ -142,5 +192,12 @@ namespace SupportTemplates
             }
         }
 
+        // 12-18-18 Hotkey code
+        private void defaultHK_KeyDown(object sender, KeyEventArgs e)
+        {
+            string modifier = e.Modifiers.ToString(); // 
+            string key_string = e.KeyCode.ToString(); // 
+            defaultHK.Text = modifier + "-" + key_string;
+        }
     }
 }
