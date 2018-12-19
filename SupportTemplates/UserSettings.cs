@@ -102,27 +102,34 @@ namespace SupportTemplates
             string hotKeyValue = defaultHK.Text;
             string[] subStrings = hotKeyValue.Split('-');
             var ModifierKeys = subStrings[0];
-            int defaultModVal = 0;
-            switch (ModifierKeys)
+            //if ((ModifierKeys.ToUpper() != subStrings[1].ToUpper()+"NONE") || (ModifierKeys.Contains("WinKey")))
+            if ((!ModifierKeys.Contains("None")) && (!ModifierKeys.Contains("WinKey")))
             {
-                case "Alt":
-                    defaultModVal = 1;
-                    break;
-                case "Control":
-                    defaultModVal = 2;
-                    break;
-                case "Shift":
-                    defaultModVal = 4;
-                    break;
-                case "WinKey":
-                    defaultModVal = 8;
-                    break;
-                default:
-                    defaultModVal = 2;
-                    break;
+                int defaultModVal = 0;
+                switch (ModifierKeys)
+                {
+                    case "Alt":
+                        defaultModVal = 1;
+                        break;
+                    case "Control":
+                        defaultModVal = 2;
+                        break;
+                    case "Shift":
+                        defaultModVal = 4;
+                        break;
+                    case "WinKey":
+                        defaultModVal = 8;
+                        break;
+                    default:
+                        defaultModVal = 2;
+                        break;
+                }
+                Properties.Settings.Default.DefaultHotKey1 = defaultModVal;
+                Properties.Settings.Default.DefaultHotKey2 = subStrings[1];
+            } else
+            {
+                MessageBox.Show("You did not choose a valid HotKey combination.  Please use Shift | Alt | Control for the modifier key.", "Hotkey Error");
             }
-            Properties.Settings.Default.DefaultHotKey1 = defaultModVal;
-            Properties.Settings.Default.DefaultHotKey2 = subStrings[1];
 
             Properties.Settings.Default.Save();
 
@@ -195,6 +202,7 @@ namespace SupportTemplates
         // 12-18-18 Hotkey code
         private void defaultHK_KeyDown(object sender, KeyEventArgs e)
         {
+            defaultHK.Clear();
             string modifier = e.Modifiers.ToString(); // 
             string key_string = e.KeyCode.ToString(); // 
             defaultHK.Text = modifier + "-" + key_string;
