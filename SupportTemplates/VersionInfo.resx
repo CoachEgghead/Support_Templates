@@ -118,7 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>v1.10.2
+    <value>v1.10.10
+• Added auto version check on launch.
+
+v1.10.2
 • Added global hotkey to bring window to foreground.
 • Added setting for user defined hotkey.
 

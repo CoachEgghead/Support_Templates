@@ -91,6 +91,7 @@
             this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.updateAvailableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -179,7 +180,7 @@
             this.TemplateText_tb.Margin = new System.Windows.Forms.Padding(0);
             this.TemplateText_tb.Name = "TemplateText_tb";
             this.TemplateText_tb.ShowSelectionMargin = true;
-            this.TemplateText_tb.Size = new System.Drawing.Size(603, 385);
+            this.TemplateText_tb.Size = new System.Drawing.Size(602, 385);
             this.TemplateText_tb.TabIndex = 1;
             this.TemplateText_tb.Text = "";
             this.TemplateText_tb.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.TemplateText_tb_LinkClicked);
@@ -547,7 +548,7 @@
             this.tempDesc_tb.Multiline = true;
             this.tempDesc_tb.Name = "tempDesc_tb";
             this.tempDesc_tb.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tempDesc_tb.Size = new System.Drawing.Size(603, 63);
+            this.tempDesc_tb.Size = new System.Drawing.Size(602, 63);
             this.tempDesc_tb.TabIndex = 2;
             // 
             // contextMenuStrip3
@@ -635,7 +636,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.toolsToolStripMenuItem,
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.updateAvailableToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(966, 24);
@@ -763,6 +765,16 @@
             this.saveFileDialog1.DefaultExt = "txt";
             this.saveFileDialog1.InitialDirectory = "c:\\";
             // 
+            // updateAvailableToolStripMenuItem
+            // 
+            this.updateAvailableToolStripMenuItem.Font = new System.Drawing.Font("Bodoni MT", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.updateAvailableToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
+            this.updateAvailableToolStripMenuItem.Name = "updateAvailableToolStripMenuItem";
+            this.updateAvailableToolStripMenuItem.Size = new System.Drawing.Size(119, 20);
+            this.updateAvailableToolStripMenuItem.Text = "Update Available";
+            this.updateAvailableToolStripMenuItem.Visible = false;
+            this.updateAvailableToolStripMenuItem.Click += new System.EventHandler(this.updateAvailableToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -872,6 +884,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem11;
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem updateAvailableToolStripMenuItem;
     }
 }
 

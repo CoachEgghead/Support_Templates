@@ -82,16 +82,6 @@ namespace SupportTemplates
 
         private const int SW_MAXIMIZE = 9; // Restore window to foreground as it was previously sized
 
-        // Currently not used
-        enum KeyModifier
-        {
-            None = 0,
-            Alt = 1,
-            Control = 2,
-            Shift = 4,
-            WinKey = 8
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -100,7 +90,10 @@ namespace SupportTemplates
 
             InitializeComponent();
 
-            Thread.Sleep(2000); // Sleep 3 seconds for splash screen
+            // 12-19-18 Check for update.  If available turn on the menu strip alert.
+            CheckForUpdate();
+
+            Thread.Sleep(1500); // Sleep 1.5 seconds for splash screen
 
             // Enable selecting all in the search field
             this.Search_Tb.Click += new System.EventHandler(Search_Tb_Click);
@@ -113,9 +106,8 @@ namespace SupportTemplates
             int id = 0;     // The id of the hotkey. 
             int defaultHK1 = Properties.Settings.Default.DefaultHotKey1;
             var defaultHK2 = Properties.Settings.Default.DefaultHotKey2;
-            Keys defaultKey = (Keys) Enum.Parse(typeof(Keys), defaultHK2);
+            Keys defaultKey = (Keys)Enum.Parse(typeof(Keys), defaultHK2);
             RegisterHotKey(this.Handle, id, defaultHK1, defaultKey.GetHashCode());       // Register saved default as global hotkey. 
-            //RegisterHotKey(this.Handle, id, (int)KeyModifier.Control, Keys.E.GetHashCode());       // Register Control + E as global hotkey. 
 
         }
 
@@ -203,7 +195,8 @@ namespace SupportTemplates
             if (File.Exists(defaultFileName))
             {
                 xmlFilePath = defaultFileName;
-            } else
+            }
+            else
             {
                 // If a previous installation's templates.xml file exists, prompt user to import.  Best I can do to salvage the prior builds data.
                 if (File.Exists(xmlFilePath5))
@@ -416,7 +409,7 @@ namespace SupportTemplates
             else if (string.IsNullOrEmpty(NewTemplateName_tb.Text)) // Update existing template
             {
                 if (listBox1.SelectedIndex >= 0)
-                { 
+                {
                     DialogResult answer = System.Windows.Forms.MessageBox.Show("Are you sure you wish to update the template?", "Confirm Save", MessageBoxButtons.YesNo);
                     if (answer == DialogResult.Yes)
                     {
@@ -443,7 +436,7 @@ namespace SupportTemplates
                                     break;
                                 }
                             }
-                                if (updOK == 3)
+                            if (updOK == 3)
                             {
                                 break;
                             }
@@ -477,7 +470,8 @@ namespace SupportTemplates
                         where t.template_Name.ToLower() == listBox1.SelectedItem.ToString().ToLower()
                         select t.template_Type.ToString();
                     tmpltType = currTempType.First();
-                } else // Default -- shouldn't be used
+                }
+                else // Default -- shouldn't be used
                 {
                     tmpltType = "Templates";
                 }
@@ -574,7 +568,7 @@ namespace SupportTemplates
                 {
                     //TemplateText_tb.Copy();
                     System.Windows.Forms.Clipboard.SetText(TemplateText_tb.SelectedText.Replace("\n", "\r\n"), System.Windows.Forms.TextDataFormat.Text);
-                    TemplateText_tb.SelectionLength = 0; 
+                    TemplateText_tb.SelectionLength = 0;
                 }
                 else
                 {
@@ -655,10 +649,12 @@ namespace SupportTemplates
                     if (importValue == "o")
                     {
                         Import_Overwrite();
-                    } else if (importValue == "i")
+                    }
+                    else if (importValue == "i")
                     {
                         Import_Insert();
-                    } else
+                    }
+                    else
                     {
                         System.Windows.MessageBox.Show("There was an error trying to pick an import type!", "Import Error");
                     }
@@ -718,7 +714,8 @@ namespace SupportTemplates
                         if (xNode["desc"] != null)
                         {
                             newTempDesc = xNode["desc"].InnerText;
-                        } else
+                        }
+                        else
                         {
                             newTempDesc = "";
                         }
@@ -840,13 +837,15 @@ namespace SupportTemplates
             if (xmlTypeNode.Any())
             {
                 // Nothing to do but start the app
-            } else
+            }
+            else
             {
                 DialogResult answer = System.Windows.Forms.MessageBox.Show("Upgrade Needed To Add New XML Node.", "Confirm Upgrade", MessageBoxButtons.OK);
                 if (answer == DialogResult.OK)
                 {
                     xmlAddTypeNode();
-                } else
+                }
+                else
                 {
                     System.Windows.Forms.MessageBox.Show("Be Aware The App May Not Work Until You Proceed With The Upgrade!", "Confirm Upgrade");
                 }
@@ -1105,8 +1104,8 @@ namespace SupportTemplates
 
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-//            if (TemplateText_tb.SelectionLength > 0)
-                TemplateText_tb.Paste();
+            //            if (TemplateText_tb.SelectionLength > 0)
+            TemplateText_tb.Paste();
 
         }
 
@@ -1114,7 +1113,7 @@ namespace SupportTemplates
         {
             if (TemplateText_tb.CanUndo)
                 TemplateText_tb.Undo();
-                TemplateText_tb.ClearUndo();
+            TemplateText_tb.ClearUndo();
         }
 
         // ContextMenu3 for Desc field
@@ -1496,14 +1495,16 @@ namespace SupportTemplates
             if (string.IsNullOrEmpty(TemplateText_tb.Text))
             {
                 System.Windows.Forms.MessageBox.Show("Must Enter Template Text!", "Warning!");
-            } else
+            }
+            else
             {
                 saveFileDialog1.Filter = "Text Files (*.txt)|*.txt|RTF Files (*.rtf)|*.rtf";
                 saveFileDialog1.AddExtension = true;
                 if (listBox1.SelectedIndex >= 0)
                 {
                     saveFileDialog1.FileName = listBox1.SelectedItem.ToString();
-                } else
+                }
+                else
                 {
                     saveFileDialog1.FileName = "STFile";
                 }
@@ -1517,7 +1518,8 @@ namespace SupportTemplates
                     if (tempDesc_tb.Text != "") // if there is a description, add it to the file
                     {
                         textToSave = tempDesc_tb.Text + "\r\n-----\r\n" + TemplateText_tb.Text;
-                    } else
+                    }
+                    else
                     {
                         textToSave = TemplateText_tb.Text;
                     }
@@ -1567,7 +1569,48 @@ namespace SupportTemplates
             // Activate the first application we find with this name
             if (p.Count() > 0)
                 SetForegroundWindow(p[0].MainWindowHandle);
-                ShowWindow(p[0].MainWindowHandle, SW_MAXIMIZE);
+            ShowWindow(p[0].MainWindowHandle, SW_MAXIMIZE);
+        }
+
+        // Update is available so open the About form to allow for update installation
+        private void updateAvailableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            af = new About();
+            af.StartPosition = FormStartPosition.CenterScreen;
+            af.Show();
+            af.Refresh();
+        }
+
+        // Check for updates and turn on menustrip item if one is ready to install.
+        public void CheckForUpdate()
+        {
+            UpdateCheckInfo info = null;
+
+            if (ApplicationDeployment.IsNetworkDeployed)
+            {
+                ApplicationDeployment ad = ApplicationDeployment.CurrentDeployment;
+                try
+                {
+                    info = ad.CheckForDetailedUpdate();
+                }
+                catch (DeploymentDownloadException dde)
+                {
+                }
+                catch (InvalidDeploymentException ide)
+                {
+                }
+                catch (InvalidOperationException ioe)
+                {
+                }
+                if (info.UpdateAvailable)
+                {
+                    updateAvailableToolStripMenuItem.Visible = true;
+                }
+                else
+                {
+                    updateAvailableToolStripMenuItem.Visible = false;
+                }
+            } 
         }
     }
 }
