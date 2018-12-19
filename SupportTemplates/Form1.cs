@@ -17,6 +17,8 @@ using System.Security.Principal;
 using System.Deployment.Application;
 using Microsoft.Win32;
 using MessageBox = System.Windows.Forms.MessageBox;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace SupportTemplates
 {
@@ -65,6 +67,30 @@ namespace SupportTemplates
 
         //private IEnumerable<template> mytmplt; // Not needed ATM .. not sure why it was needed earlier
 
+        // 12-18-18 Create hotkey function to bring app to foreground
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vk);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+        [DllImport("user32.dll")]
+        static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+        private const int SW_MAXIMIZE = 9; // Restore window to foreground as it was previously sized
+
+        enum KeyModifier
+        {
+            None = 0,
+            Alt = 1,
+            Control = 2,
+            Shift = 4,
+            WinKey = 8
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -81,6 +107,15 @@ namespace SupportTemplates
             Search_Tb.Text = "Search ...";
             this.Search_Tb.Leave += new System.EventHandler(this.Search_Tb_Leave);
             this.Search_Tb.Enter += new System.EventHandler(this.Search_Tb_Enter);
+
+            // 12-18-18 Hotkey code
+            int id = 0;     // The id of the hotkey. 
+            int defaultHK1 = Properties.Settings.Default.DefaultHotKey1;
+            var defaultHK2 = Properties.Settings.Default.DefaultHotKey2;
+
+            //RegisterHotKey(this.Handle, id, (int)KeyModifier.Control, Keys.E.GetHashCode());       // Register Control + E as global hotkey. 
+            //RegisterHotKey(this.Handle, id, defaultHK1, Enum.TryParse(defaultHK2, out key).GetHashCode());       // Register Control + W as global hotkey. 
+            RegisterHotKey(this.Handle, id, defaultHK1, Keys.E.GetHashCode());       // Register Control + E as global hotkey. 
         }
 
         /// <summary>
@@ -326,6 +361,10 @@ namespace SupportTemplates
             Properties.Settings.Default.InitialWidth = Size.Width;
             Properties.Settings.Default.InitialSplitterDiff = splitContainer1.SplitterDistance;
             Properties.Settings.Default.Save();
+
+            // 12-18-18 Hotkey code to unregister hotkey
+            UnregisterHotKey(this.Handle, 0);       // Unregister hotkey with id 0 before closing the form. You might want to call this more than once with different id values if you are planning to register more than one hotkey.
+
         }
 
         /// <summary>
@@ -1498,6 +1537,37 @@ namespace SupportTemplates
                     MessageBox.Show("Your text has been saved to \n\r" + saveFileDialog1.FileName + ".", "Save To File");
                 }
             }
+        }
+
+        // 12-18-18 Hotkey code
+        protected override void WndProc(ref Message m)
+        {
+            base.WndProc(ref m);
+
+            if (m.Msg == 0x0312)
+            {
+                /* Note that the three lines below are not needed if you only want to register one hotkey.
+                 * The below lines are useful in case you want to register multiple keys, which you can use a switch with the id as argument, or if you want to know which key/modifier was pressed for some particular reason. */
+
+                //Keys key = (Keys)(((int)m.LParam >> 16) & 0xFFFF);                  // The key of the hotkey that was pressed.
+                //KeyModifier modifier = (KeyModifier)((int)m.LParam & 0xFFFF);       // The modifier of the hotkey that was pressed.
+                //int id = m.WParam.ToInt32();                                        // The id of the hotkey that was pressed.
+
+
+                //MessageBox.Show("Hotkey has been pressed!");
+                // do something
+                ActivateApp("SupportTemplates");
+            }
+        }
+
+        void ActivateApp(string processName)
+        {
+            Process[] p = Process.GetProcessesByName(processName);
+
+            // Activate the first application we find with this name
+            if (p.Count() > 0)
+                SetForegroundWindow(p[0].MainWindowHandle);
+                ShowWindow(p[0].MainWindowHandle, SW_MAXIMIZE);
         }
     }
 }

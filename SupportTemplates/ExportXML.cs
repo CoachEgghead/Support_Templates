@@ -30,7 +30,7 @@ namespace SupportTemplates
             InitializeComponent();
             //xmlFileCheck();
             loadTemplateList();
-            xdoc = XDocument.Load("DefaultXML.xml"); // Load in the default template to add to.
+            xdoc = XDocument.Load("DefaultXML.xml"); // Load in the default template to add to. Includes Welcome message for new users.
         }
 
         public void loadTemplateList()

@@ -71,5 +71,11 @@
     <Setting Name="InitialDBFont" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">Microsoft Sans Serif, 9pt</Value>
     </Setting>
+    <Setting Name="DefaultHotKey1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="DefaultHotKey2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">E</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
