@@ -207,5 +207,25 @@ namespace SupportTemplates
             string key_string = e.KeyCode.ToString(); // 
             defaultHK.Text = modifier + "-" + key_string;
         }
+
+        private void saveBtn_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            saveBtn.FlatAppearance.BorderSize = 1;
+        }
+
+        private void saveBtn_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            saveBtn.FlatAppearance.BorderSize = 0;
+        }
+
+        private void closeBtn_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            closeBtn.FlatAppearance.BorderSize = 1;
+        }
+
+        private void closeBtn_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            closeBtn.FlatAppearance.BorderSize = 0;
+        }
     }
 }

@@ -29,6 +29,7 @@ namespace SupportTemplates
         //Rename_Template rt;
         ExportXML ex;
         UserSettings us;
+        VersionInfo vf;
 
         FontDialog fontDlg = new FontDialog();
         FontDialog fontDlgLB = new FontDialog();
@@ -1611,6 +1612,19 @@ namespace SupportTemplates
                     updateAvailableToolStripMenuItem.Visible = false;
                 }
             } 
+        }
+
+        private void helpDocsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://sites.google.com/site/martyelder/support-templates");
+        }
+
+        private void versionInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            vf = new VersionInfo();
+            vf.StartPosition = FormStartPosition.CenterScreen;
+            vf.Show();
+            vf.Refresh();
         }
     }
 }

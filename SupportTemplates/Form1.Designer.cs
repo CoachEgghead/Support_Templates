@@ -88,10 +88,12 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateAvailableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.updateAvailableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpDocsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.versionInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -180,7 +182,7 @@
             this.TemplateText_tb.Margin = new System.Windows.Forms.Padding(0);
             this.TemplateText_tb.Name = "TemplateText_tb";
             this.TemplateText_tb.ShowSelectionMargin = true;
-            this.TemplateText_tb.Size = new System.Drawing.Size(602, 385);
+            this.TemplateText_tb.Size = new System.Drawing.Size(601, 385);
             this.TemplateText_tb.TabIndex = 1;
             this.TemplateText_tb.Text = "";
             this.TemplateText_tb.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.TemplateText_tb_LinkClicked);
@@ -367,7 +369,7 @@
             this.Save_btn.Image = ((System.Drawing.Image)(resources.GetObject("Save_btn.Image")));
             this.Save_btn.Location = new System.Drawing.Point(156, 405);
             this.Save_btn.Name = "Save_btn";
-            this.Save_btn.Size = new System.Drawing.Size(79, 38);
+            this.Save_btn.Size = new System.Drawing.Size(76, 38);
             this.Save_btn.TabIndex = 3;
             this.Save_btn.Text = "Save";
             this.Save_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -548,7 +550,7 @@
             this.tempDesc_tb.Multiline = true;
             this.tempDesc_tb.Name = "tempDesc_tb";
             this.tempDesc_tb.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tempDesc_tb.Size = new System.Drawing.Size(602, 63);
+            this.tempDesc_tb.Size = new System.Drawing.Size(601, 63);
             this.tempDesc_tb.TabIndex = 2;
             // 
             // contextMenuStrip3
@@ -748,7 +750,9 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem1});
+            this.aboutToolStripMenuItem1,
+            this.helpDocsToolStripMenuItem,
+            this.versionInfoToolStripMenuItem});
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
@@ -760,11 +764,6 @@
             this.aboutToolStripMenuItem1.Text = "About";
             this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.About_btn_Click);
             // 
-            // saveFileDialog1
-            // 
-            this.saveFileDialog1.DefaultExt = "txt";
-            this.saveFileDialog1.InitialDirectory = "c:\\";
-            // 
             // updateAvailableToolStripMenuItem
             // 
             this.updateAvailableToolStripMenuItem.Font = new System.Drawing.Font("Bodoni MT", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
@@ -774,6 +773,25 @@
             this.updateAvailableToolStripMenuItem.Text = "Update Available";
             this.updateAvailableToolStripMenuItem.Visible = false;
             this.updateAvailableToolStripMenuItem.Click += new System.EventHandler(this.updateAvailableToolStripMenuItem_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "txt";
+            this.saveFileDialog1.InitialDirectory = "c:\\";
+            // 
+            // helpDocsToolStripMenuItem
+            // 
+            this.helpDocsToolStripMenuItem.Name = "helpDocsToolStripMenuItem";
+            this.helpDocsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.helpDocsToolStripMenuItem.Text = "Help Docs";
+            this.helpDocsToolStripMenuItem.Click += new System.EventHandler(this.helpDocsToolStripMenuItem_Click);
+            // 
+            // versionInfoToolStripMenuItem
+            // 
+            this.versionInfoToolStripMenuItem.Name = "versionInfoToolStripMenuItem";
+            this.versionInfoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.versionInfoToolStripMenuItem.Text = "Version Info";
+            this.versionInfoToolStripMenuItem.Click += new System.EventHandler(this.versionInfoToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -885,6 +903,8 @@
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem updateAvailableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpDocsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem versionInfoToolStripMenuItem;
     }
 }
 

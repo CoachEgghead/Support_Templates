@@ -122,5 +122,25 @@ namespace SupportTemplates
             listView1.Sorting = SortOrder.Ascending;
             listView1.Sort();// = SortOrder.Ascending;
         }
+
+        private void button1_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            button1.FlatAppearance.BorderSize = 1;
+        }
+
+        private void button1_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            button1.FlatAppearance.BorderSize = 0;
+        }
+
+        private void button2_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            button2.FlatAppearance.BorderSize = 1;
+        }
+
+        private void button2_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            button2.FlatAppearance.BorderSize = 0;
+        }
     }
 }

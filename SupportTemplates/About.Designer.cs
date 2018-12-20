@@ -122,7 +122,7 @@
             this.versionCheck_btn.Image = ((System.Drawing.Image)(resources.GetObject("versionCheck_btn.Image")));
             this.versionCheck_btn.Location = new System.Drawing.Point(12, 135);
             this.versionCheck_btn.Name = "versionCheck_btn";
-            this.versionCheck_btn.Size = new System.Drawing.Size(119, 61);
+            this.versionCheck_btn.Size = new System.Drawing.Size(135, 61);
             this.versionCheck_btn.TabIndex = 9;
             this.versionCheck_btn.Text = "Check for new version";
             this.versionCheck_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
