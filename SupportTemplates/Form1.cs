@@ -1079,7 +1079,8 @@ namespace SupportTemplates
         // Open browser if click a link
         private void TemplateText_tb_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("explorer.exe", e.LinkText);
+            string linkText = e.LinkText.Replace((char)160, ' ');
+            System.Diagnostics.Process.Start("explorer.exe", linkText);
         }
 
         // ContextMenu2 for main text field
@@ -1625,6 +1626,16 @@ namespace SupportTemplates
             vf.StartPosition = FormStartPosition.CenterScreen;
             vf.Show();
             vf.Refresh();
+        }
+
+        private void insertFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.OpenFileDialog insertFileURL = new System.Windows.Forms.OpenFileDialog();
+            insertFileURL.ShowHelp = true;
+            insertFileURL.ShowDialog();
+            var newFilePath = insertFileURL.FileName;
+            //TemplateText_tb.AppendText("file://" + insertFileURL.FileName.Replace(' ', (char)160));
+            TemplateText_tb.SelectedText = " file://" + insertFileURL.FileName.Replace(' ', (char)160) + " ";
         }
     }
 }

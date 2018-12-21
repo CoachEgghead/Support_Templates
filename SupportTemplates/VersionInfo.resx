@@ -118,7 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>v1.10.13
+    <value>v1.10.15
+• Insert File URL link added to main text box (right-click)
+
+v1.10.13
 • Added auto version check on launch.
 • Button cleanup on various pages
 • About menu updates

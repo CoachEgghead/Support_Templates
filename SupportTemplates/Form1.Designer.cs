@@ -88,12 +88,14 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpDocsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.versionInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateAvailableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.helpDocsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.versionInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.insertFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -182,7 +184,7 @@
             this.TemplateText_tb.Margin = new System.Windows.Forms.Padding(0);
             this.TemplateText_tb.Name = "TemplateText_tb";
             this.TemplateText_tb.ShowSelectionMargin = true;
-            this.TemplateText_tb.Size = new System.Drawing.Size(601, 385);
+            this.TemplateText_tb.Size = new System.Drawing.Size(600, 385);
             this.TemplateText_tb.TabIndex = 1;
             this.TemplateText_tb.Text = "";
             this.TemplateText_tb.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.TemplateText_tb_LinkClicked);
@@ -195,10 +197,12 @@
             this.pasteToolStripMenuItem,
             this.undoToolStripMenuItem,
             this.toolStripMenuItem2,
+            this.insertFileToolStripMenuItem,
+            this.toolStripSeparator2,
             this.fontToolStripMenuItem,
             this.backgroundColorToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(171, 142);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(181, 192);
             // 
             // cutToolStripMenuItem
             // 
@@ -550,7 +554,7 @@
             this.tempDesc_tb.Multiline = true;
             this.tempDesc_tb.Name = "tempDesc_tb";
             this.tempDesc_tb.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tempDesc_tb.Size = new System.Drawing.Size(601, 63);
+            this.tempDesc_tb.Size = new System.Drawing.Size(600, 63);
             this.tempDesc_tb.TabIndex = 2;
             // 
             // contextMenuStrip3
@@ -760,9 +764,23 @@
             // aboutToolStripMenuItem1
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(136, 22);
             this.aboutToolStripMenuItem1.Text = "About";
             this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.About_btn_Click);
+            // 
+            // helpDocsToolStripMenuItem
+            // 
+            this.helpDocsToolStripMenuItem.Name = "helpDocsToolStripMenuItem";
+            this.helpDocsToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.helpDocsToolStripMenuItem.Text = "Help Docs";
+            this.helpDocsToolStripMenuItem.Click += new System.EventHandler(this.helpDocsToolStripMenuItem_Click);
+            // 
+            // versionInfoToolStripMenuItem
+            // 
+            this.versionInfoToolStripMenuItem.Name = "versionInfoToolStripMenuItem";
+            this.versionInfoToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.versionInfoToolStripMenuItem.Text = "Version Info";
+            this.versionInfoToolStripMenuItem.Click += new System.EventHandler(this.versionInfoToolStripMenuItem_Click);
             // 
             // updateAvailableToolStripMenuItem
             // 
@@ -779,19 +797,17 @@
             this.saveFileDialog1.DefaultExt = "txt";
             this.saveFileDialog1.InitialDirectory = "c:\\";
             // 
-            // helpDocsToolStripMenuItem
+            // insertFileToolStripMenuItem
             // 
-            this.helpDocsToolStripMenuItem.Name = "helpDocsToolStripMenuItem";
-            this.helpDocsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.helpDocsToolStripMenuItem.Text = "Help Docs";
-            this.helpDocsToolStripMenuItem.Click += new System.EventHandler(this.helpDocsToolStripMenuItem_Click);
+            this.insertFileToolStripMenuItem.Name = "insertFileToolStripMenuItem";
+            this.insertFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.insertFileToolStripMenuItem.Text = "Insert File";
+            this.insertFileToolStripMenuItem.Click += new System.EventHandler(this.insertFileToolStripMenuItem_Click);
             // 
-            // versionInfoToolStripMenuItem
+            // toolStripSeparator2
             // 
-            this.versionInfoToolStripMenuItem.Name = "versionInfoToolStripMenuItem";
-            this.versionInfoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.versionInfoToolStripMenuItem.Text = "Version Info";
-            this.versionInfoToolStripMenuItem.Click += new System.EventHandler(this.versionInfoToolStripMenuItem_Click);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(167, 6);
             // 
             // Form1
             // 
@@ -905,6 +921,8 @@
         private System.Windows.Forms.ToolStripMenuItem updateAvailableToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpDocsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem versionInfoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem insertFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 
