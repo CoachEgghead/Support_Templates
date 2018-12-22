@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Xml;
 using System.Xml.Linq;
@@ -19,6 +20,8 @@ using Microsoft.Win32;
 using MessageBox = System.Windows.Forms.MessageBox;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.Windows.Documents;
+using System.Windows.Markup;
 
 namespace SupportTemplates
 {
@@ -1564,6 +1567,7 @@ namespace SupportTemplates
             }
         }
 
+        // 12-18-18 Hotkey code
         void ActivateApp(string processName)
         {
             Process[] p = Process.GetProcessesByName(processName);
@@ -1615,11 +1619,13 @@ namespace SupportTemplates
             } 
         }
 
+        // 12-21-18 Added help docs link to file about menu
         private void helpDocsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://sites.google.com/site/martyelder/support-templates");
         }
 
+        // 12-21-18 Added Version info to file about menu 
         private void versionInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             vf = new VersionInfo();
@@ -1628,14 +1634,42 @@ namespace SupportTemplates
             vf.Refresh();
         }
 
+        // 12-21-18 Right click menu item to insert a file URL into the main RTB
+        //   Allows for linking images or other files to a template
         private void insertFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.OpenFileDialog insertFileURL = new System.Windows.Forms.OpenFileDialog();
             insertFileURL.ShowHelp = true;
             insertFileURL.ShowDialog();
             var newFilePath = insertFileURL.FileName;
-            //TemplateText_tb.AppendText("file://" + insertFileURL.FileName.Replace(' ', (char)160));
-            TemplateText_tb.SelectedText = " file://" + insertFileURL.FileName.Replace(' ', (char)160) + " ";
+            // Handle the canceling of the file dialog so that the file:// isn't added unless needed
+            if (insertFileURL.FileName != "")
+            {
+                TemplateText_tb.SelectedText = " file://" + insertFileURL.FileName.Replace(' ', (char)160) + " ";
+            }
         }
+
+        // 12-22-18 Toying with RichTextFormatting in main template RTB
+        //  Would take major rewrite to save to XAML
+        //  Leaving here just in case
+        private static string GetRTF(System.Windows.Controls.RichTextBox rt)
+        {
+            TextRange range = new TextRange(rt.Document.ContentStart, rt.Document.ContentEnd);
+            MemoryStream stream = new MemoryStream();
+            range.Save(stream, System.Windows.DataFormats.Xaml);
+            string xamlText = Encoding.UTF8.GetString(stream.ToArray());
+            return xamlText;
+        }
+        private static FlowDocument SetRTF(string xamlString)
+        {
+            StringReader stringReader = new StringReader(xamlString);
+            XmlReader xmlReader = XmlReader.Create(stringReader);
+            Section sec = XamlReader.Load(xmlReader) as Section;
+            FlowDocument doc = new FlowDocument();
+            while (sec.Blocks.Count > 0)
+                doc.Blocks.Add(sec.Blocks.FirstBlock);
+            return doc;
+        }
+
     }
 }
