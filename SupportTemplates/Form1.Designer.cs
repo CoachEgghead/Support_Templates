@@ -44,6 +44,8 @@
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.insertFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.fontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NewTemplateName_tb = new System.Windows.Forms.TextBox();
@@ -94,8 +96,6 @@
             this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.insertFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -178,16 +178,19 @@
             this.TemplateText_tb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.TemplateText_tb.BulletIndent = 1;
             this.TemplateText_tb.ContextMenuStrip = this.contextMenuStrip2;
             this.TemplateText_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TemplateText_tb.Location = new System.Drawing.Point(0, 0);
             this.TemplateText_tb.Margin = new System.Windows.Forms.Padding(0);
             this.TemplateText_tb.Name = "TemplateText_tb";
             this.TemplateText_tb.ShowSelectionMargin = true;
-            this.TemplateText_tb.Size = new System.Drawing.Size(600, 385);
+            this.TemplateText_tb.Size = new System.Drawing.Size(598, 385);
             this.TemplateText_tb.TabIndex = 1;
             this.TemplateText_tb.Text = "";
             this.TemplateText_tb.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.TemplateText_tb_LinkClicked);
+            this.TemplateText_tb.TextChanged += new System.EventHandler(this.TemplateText_tb_TextChanged);
+            this.TemplateText_tb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TemplateText_tb_KeyUp);
             // 
             // contextMenuStrip2
             // 
@@ -202,7 +205,7 @@
             this.fontToolStripMenuItem,
             this.backgroundColorToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(181, 192);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(171, 170);
             // 
             // cutToolStripMenuItem
             // 
@@ -236,6 +239,18 @@
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(167, 6);
+            // 
+            // insertFileToolStripMenuItem
+            // 
+            this.insertFileToolStripMenuItem.Name = "insertFileToolStripMenuItem";
+            this.insertFileToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.insertFileToolStripMenuItem.Text = "Insert File";
+            this.insertFileToolStripMenuItem.Click += new System.EventHandler(this.insertFileToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(167, 6);
             // 
             // fontToolStripMenuItem
             // 
@@ -554,7 +569,7 @@
             this.tempDesc_tb.Multiline = true;
             this.tempDesc_tb.Name = "tempDesc_tb";
             this.tempDesc_tb.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tempDesc_tb.Size = new System.Drawing.Size(600, 63);
+            this.tempDesc_tb.Size = new System.Drawing.Size(598, 63);
             this.tempDesc_tb.TabIndex = 2;
             // 
             // contextMenuStrip3
@@ -796,18 +811,6 @@
             // 
             this.saveFileDialog1.DefaultExt = "txt";
             this.saveFileDialog1.InitialDirectory = "c:\\";
-            // 
-            // insertFileToolStripMenuItem
-            // 
-            this.insertFileToolStripMenuItem.Name = "insertFileToolStripMenuItem";
-            this.insertFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.insertFileToolStripMenuItem.Text = "Insert File";
-            this.insertFileToolStripMenuItem.Click += new System.EventHandler(this.insertFileToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(167, 6);
             // 
             // Form1
             // 

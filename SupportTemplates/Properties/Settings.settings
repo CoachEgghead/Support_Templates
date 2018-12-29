@@ -45,7 +45,7 @@
       <Value Profile="(Default)">White</Value>
     </Setting>
     <Setting Name="DefaultTemplate" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">4</Value>
+      <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="AutoBackup" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>

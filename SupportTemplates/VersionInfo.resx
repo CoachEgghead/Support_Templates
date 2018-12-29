@@ -118,7 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>v1.10.15
+    <value>v1.11.0
+• Search Results template type now added on the fly
+• IMPORTANT! Please reset your default template
+• Background color allows for windows custom color definitions
+
+v.1.10.21
+• Make on launch version check run async
+• Update to clear text prompting
+
+v1.10.17
+• Added Atl-7 &amp; Alt-9 bullets
+• Clear button now checks for unsaved text in main textbox before clearing where not template is selected.
+• Clear button now checks for unsaved changed in the main textbox within selected template.
+
+v1.10.15
 • Insert File URL link added to main text box (right-click)
 
 v1.10.13

@@ -193,7 +193,7 @@ namespace SupportTemplates.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
         public int DefaultTemplate {
             get {
                 return ((int)(this["DefaultTemplate"]));

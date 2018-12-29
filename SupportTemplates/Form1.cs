@@ -55,7 +55,13 @@ namespace SupportTemplates
         public string xmlFilePath5 = "c:\\Users\\" + NameWithoutDomain(System.Security.Principal.WindowsIdentity.GetCurrent().Name) + "\\AppData\\Local\\VirtualStore\\Program Files (x86)\\Egghead Apps\\Support Templates\\templates.xml";
 
         public int defaultTemplate = 0;
+        // 12-28-18 Flags to handle text changed prompt when changing selected templates
+        public int lastTemplateSelected = 0;
+        public bool tempReverted = false; 
 
+        // 12-25-18 Check for changes to template code
+        public bool rtb_TextChanged = false;
+        
         // 7-24-18 no longer need the 2 different paths after adding custom path for templates.xml
         //   Leaving commented out as informational.
         //string xmlFilePath1 = System.Windows.Forms.Application.CommonAppDataPath; // Necessary for deployment
@@ -334,6 +340,24 @@ namespace SupportTemplates
         // Save all custom changes
         public void Form1_FormClosing(Object sender, FormClosingEventArgs e)
         {
+            if (rtb_TextChanged == true)
+            {
+                DialogResult dg = MessageBox.Show("There are unsaved changes to the template.  Are you sure you want to close the window?", "Closing", MessageBoxButtons.YesNoCancel);
+
+                if (dg == DialogResult.Yes)
+                {
+                    e.Cancel = false;
+                }
+                else if (dg == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+                else if (dg == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
+
             float currTBFontSize = TemplateText_tb.Font.Size;
             float currLBFontSize = listBox1.Font.Size;
             float currDBFontSize = tempDesc_tb.Font.Size;
@@ -373,24 +397,58 @@ namespace SupportTemplates
         /// </summary>
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex >= 0)
+            if (listBox1.SelectedIndex >= 0 && tempReverted == false) // tempReverted is where user flips between tomplates and change check is needed
             {
-                TemplateText_tb.Clear(); // Clear text box .. fixes issue with search highlighting where first item in list would cause all items to be highlighted.
-                tempDesc_tb.Clear(); // Clear text box .. fixes issue with search highlighting where first item in list would cause all items to be highlighted.
-                XmlNodeList xnList = xm.SelectNodes(textbx); // textbx defines all templates
-                foreach (XmlNode xn in xnList)
+                bool clearText = true;
+                if (rtb_TextChanged == true)
                 {
-                    if (xn["name"].InnerText == listBox1.SelectedItem.ToString())
+                    if (!string.IsNullOrEmpty(TemplateText_tb.Text) && listBox1.SelectedIndex < 0) // RTB not empty and no item selected (-1)
                     {
-                        TemplateText_tb.Text = xn["text"].InnerText;
-                        tempDesc_tb.Text = xn["desc"].InnerText;
+                        DialogResult answer = System.Windows.Forms.MessageBox.Show("There is unsaved text. Are you sure??", "Confirm Change", MessageBoxButtons.YesNo);
+                        if (answer == DialogResult.No)
+                        {
+                            clearText = false;
+                        }
+                    }
+                    else if (!string.IsNullOrEmpty(TemplateText_tb.Text) && listBox1.SelectedIndex >= 0 && rtb_TextChanged == true) // RTB not empty, item selected (>=0), & text chagned
+                    {
+                        DialogResult answer = System.Windows.Forms.MessageBox.Show("There are unsaved changes to the template. Are you sure??", "Confirm Change", MessageBoxButtons.YesNo);
+                        if (answer == DialogResult.No)
+                        {
+                            clearText = false;
+                            tempReverted = true; // 12-27-18 flag that we are reverting back to previous template so this doesn't prompt a 2nd time immediately
+                            listBox1.SelectedIndex = lastTemplateSelected;
+                        }
                     }
                 }
-
-                if (Search_Tb.Text != "Search ...")
+                if (clearText == true)
                 {
-                    HighlightWords(Search_Tb.Text);
+                    TemplateText_tb.Clear(); // Clear text box .. fixes issue with search highlighting where first item in list would cause all items to be highlighted.
+                    tempDesc_tb.Clear(); // Clear text box .. fixes issue with search highlighting where first item in list would cause all items to be highlighted.
+                    lastTemplateSelected = listBox1.SelectedIndex; // 12-27-18 change the previous selected index item so when you choose not to clear with unsaved changes it can reset the selected template back
+                    XmlNodeList xnList = xm.SelectNodes(textbx); // textbx defines all templates
+                    foreach (XmlNode xn in xnList)
+                    {
+                        if (xn["name"].InnerText == listBox1.SelectedItem.ToString())
+                        {
+                            TemplateText_tb.Text = xn["text"].InnerText;
+                            tempDesc_tb.Text = xn["desc"].InnerText;
+                        }
+                    }
+
+                    if (Search_Tb.Text != "Search ...")
+                    {
+                        HighlightWords(Search_Tb.Text);
+                    }
+                    // 12-25-18 Set text changed to false as this is just a load of the field.
+                    if (rtb_TextChanged == true)
+                    {
+                        rtb_TextChanged = false;
+                    }
                 }
+            } else
+            {
+                tempReverted = false; // 12-28-18 Set the reverted flag back to false so proper text changed checks can occur
             }
         }
 
@@ -545,17 +603,43 @@ namespace SupportTemplates
         /// </summary>
         private void Clear_btn_Click(object sender, EventArgs e)
         {
-            // 11/7/18 
-            //  When clicking clear from a search return to the default template display.  QoL change - No longer have to click the template list after a search
-            if (comboBox1.SelectedItem.ToString() == "Search Results") // Creating a new template
+            // 12/25/18
+            //  When clicking clear, if there is text in the main RTB and no template selected, then prompt user to save.
+            //  When clicking clear, if there is a selected template with changes, prompt user that there have been changes.
+            bool clearText = true;
+            if (!string.IsNullOrEmpty(TemplateText_tb.Text) && listBox1.SelectedIndex < 0) // RTB not empty and no item selected (-1)
             {
-                comboBox1.SelectedIndex = Properties.Settings.Default.DefaultTemplate;
+                DialogResult answer = System.Windows.Forms.MessageBox.Show("There is unsaved text. Are you sure??", "Confirm Clear", MessageBoxButtons.YesNo);
+                if (answer == DialogResult.No)
+                {
+                    clearText = false;
+                }
+            } else if (!string.IsNullOrEmpty(TemplateText_tb.Text) && listBox1.SelectedIndex >= 0 && rtb_TextChanged == true) // RTB not empty, item selected (>=0), & text chagned
+            {
+                DialogResult answer = System.Windows.Forms.MessageBox.Show("There are unsaved changes to the template. Are you sure??", "Confirm Clear", MessageBoxButtons.YesNo);
+                if (answer == DialogResult.No)
+                {
+                    clearText = false;
+                }
             }
 
-            TemplateText_tb.Text = "";
-            tempDesc_tb.Text = "";
-            NewTemplateName_tb.Text = "";
-            listBox1.ClearSelected();
+            if (clearText == true) {
+                // 11/7/18 
+                //  When clicking clear from a search return to the default template display.  QoL change - No longer have to click the template list after a search
+                if (comboBox1.SelectedItem.ToString() == "Search Results") // Clear from a search
+                {
+                    int searchIndex = comboBox1.Items.IndexOf("Search Results");
+
+                    comboBox1.Items.RemoveAt(searchIndex); // 12-28-18 Remove the Search Results type
+                    comboBox1.SelectedIndex = Properties.Settings.Default.DefaultTemplate;
+                }
+
+                TemplateText_tb.Text = "";
+                tempDesc_tb.Text = "";
+                NewTemplateName_tb.Text = "";
+                listBox1.ClearSelected();
+                rtb_TextChanged = false; // reset the text changed flag
+            }
         }
 
         /// <summary>
@@ -918,12 +1002,11 @@ namespace SupportTemplates
             //Create a list to store all the items.
             List<string> Items = new List<string>();
             // Hardcoding types for now (12/16/2017) .. can change later if add feature to add types
-            Items.Add("Templates");
-            Items.Add("Tips");
-            Items.Add("Notes");
             Items.Add("General");
             Items.Add("Misc");
-            Items.Add("Search Results");
+            Items.Add("Notes");
+            Items.Add("Templates");
+            Items.Add("Tips");
             /*
             //Load the document from a file.
             XmlDocument doc = new XmlDocument();
@@ -951,11 +1034,19 @@ namespace SupportTemplates
             {
                 if (comboBox1.SelectedItem.ToString() == "Search Results")
                 {
-                    listBox1.Items.Clear(); // Go ahead and clear the template listing before searching
-                    searchTmplt();
+                    // 12-28-18 Appears to not need this.  Searches are not instituted from the type list
+                    //listBox1.Items.Clear(); // Go ahead and clear the template listing before searching
+                    //searchTmplt();
                 }
                 else
                 {
+                    // 12-28-18 Remove Search Results type if present since not searching
+                    int searchIndex = comboBox1.Items.IndexOf("Search Results");
+                    if (searchIndex >= 0)
+                    {
+                        comboBox1.Items.RemoveAt(searchIndex);
+                    }
+
                     Search_Tb.Text = "Search ...";
                     Search_Tb.ForeColor = System.Drawing.Color.Gray;
                     loadList();
@@ -968,10 +1059,18 @@ namespace SupportTemplates
             // Selected a new type so go grab the matching items and reload the list
             if (comboBox1.SelectedItem.ToString() == "Search Results")
             {
-                searchTmplt();
+                // 12-28-18 Appears to not need this.  Searches are not instituted from the type list
+                //searchTmplt();
             }
             else
             {
+                // 12-28-18 Remove Search Results type if present since not searching
+                int searchIndex = comboBox1.Items.IndexOf("Search Results");
+                if (searchIndex >= 0)
+                {
+                    comboBox1.Items.RemoveAt(searchIndex);
+                }
+
                 Search_Tb.Text = "Search ...";
                 Search_Tb.ForeColor = System.Drawing.Color.Gray;
                 loadList();
@@ -984,7 +1083,6 @@ namespace SupportTemplates
             Font font = TemplateText_tb.Font;
             float newSize = trackBar1.Value;
             TemplateText_tb.Font = new Font(font.FontFamily, newSize, font.Style);
-            //listBox1.Font = new Font(font.FontFamily, newSize, font.Style);
             fontSizeval.Text = newSize.ToString();
         }
 
@@ -992,10 +1090,17 @@ namespace SupportTemplates
         {
             if ((Search_Tb.Text != "Search ...") && (Search_Tb.Text != ""))
             {
-                comboBox1.SelectedIndex = 3; // Change type to Search Results .. list is alphabetical .. if more types added then update this
+                // 12-28-18 Updated to add Search Results on the fly
+                if (!comboBox1.Items.Contains("Search Results"))
+                {
+                    comboBox1.Items.Add("Search Results");
+                }
+                int searchIndex = comboBox1.Items.IndexOf("Search Results");
+                comboBox1.SelectedIndex = searchIndex; // Change type to Search Results .. list is alphabetical .. 
 
                 listBox1.Items.Clear();
                 TemplateText_tb.Text = "";
+                tempDesc_tb.Text = "";
 
                 xm.Load(xmlFilePath);
                 XmlNodeList Xn = xm.SelectNodes(textbx); // textbx defines all templates
@@ -1169,7 +1274,7 @@ namespace SupportTemplates
         {
             ColorDialog MyDialog = new ColorDialog();
             // Keeps the user from selecting a custom color.
-            MyDialog.AllowFullOpen = false;
+            MyDialog.AllowFullOpen = true;
             // Allows the user to get help. (The default is false.)
             MyDialog.ShowHelp = true;
             // Sets the initial color select to the current text color.
@@ -1185,7 +1290,7 @@ namespace SupportTemplates
         {
             ColorDialog MyDialog = new ColorDialog();
             // Keeps the user from selecting a custom color.
-            MyDialog.AllowFullOpen = false;
+            MyDialog.AllowFullOpen = true;
             // Allows the user to get help. (The default is false.)
             MyDialog.ShowHelp = true;
             // Sets the initial color select to the current text color.
@@ -1201,7 +1306,7 @@ namespace SupportTemplates
         {
             ColorDialog MyDialog = new ColorDialog();
             // Keeps the user from selecting a custom color.
-            MyDialog.AllowFullOpen = false;
+            MyDialog.AllowFullOpen = true;
             // Allows the user to get help. (The default is false.)
             MyDialog.ShowHelp = true;
             // Sets the initial color select to the current text color.
@@ -1588,35 +1693,35 @@ namespace SupportTemplates
         }
 
         // Check for updates and turn on menustrip item if one is ready to install.
+        // 12-28-18 New build to do an asyn check to avoid issues if no internet connection
         public void CheckForUpdate()
         {
-            UpdateCheckInfo info = null;
-
             if (ApplicationDeployment.IsNetworkDeployed)
             {
                 ApplicationDeployment ad = ApplicationDeployment.CurrentDeployment;
-                try
-                {
-                    info = ad.CheckForDetailedUpdate();
-                }
-                catch (DeploymentDownloadException dde)
-                {
-                }
-                catch (InvalidDeploymentException ide)
-                {
-                }
-                catch (InvalidOperationException ioe)
-                {
-                }
-                if (info.UpdateAvailable)
-                {
-                    updateAvailableToolStripMenuItem.Visible = true;
-                }
-                else
-                {
-                    updateAvailableToolStripMenuItem.Visible = false;
-                }
-            } 
+                ad.CheckForUpdateCompleted += new CheckForUpdateCompletedEventHandler(ad_CheckForUpdateCompleted);
+                //ad.CheckForUpdateProgressChanged += new DeploymentProgressChangedEventHandler(ad_CheckForUpdateProgressChanged);
+
+                ad.CheckForUpdateAsync();
+            }
+        }
+
+        void ad_CheckForUpdateCompleted(object sender, CheckForUpdateCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                MessageBox.Show("ERROR: Could not check for a new version of the application. Reason: \n" + e.Error.Message + "\nPlease report this error to the system administrator.");
+                return;
+            }
+
+            if (e.UpdateAvailable)
+            {
+                updateAvailableToolStripMenuItem.Visible = true;
+            }
+            else
+            {
+                updateAvailableToolStripMenuItem.Visible = false;
+            }
         }
 
         // 12-21-18 Added help docs link to file about menu
@@ -1671,5 +1776,25 @@ namespace SupportTemplates
             return doc;
         }
 
+        private void TemplateText_tb_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            // Replace "Keys.A" with the key you want
+            if (e.KeyCode == Keys.NumPad7 && e.Alt)
+            {
+                //MessageBox.Show("Alt7 Pressed!");
+                TemplateText_tb.SelectedText = "•"; // Doesn't retain true bullets in XML.  Needs to be • hardcoded.
+            } else if (e.KeyCode == Keys.NumPad9 && e.Alt)
+            {
+                TemplateText_tb.SelectedText = "○";
+            } else
+            {
+                // nothing
+            }
+        }
+
+        private void TemplateText_tb_TextChanged(object sender, EventArgs e)
+        {
+            rtb_TextChanged = true;
+        }
     }
 }
