@@ -118,7 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>v1.11.0
+    <value>v1.11.1
+• Added menu option to open a text file
+• Bug fixes to unsaved changes handling
+
+v1.11.0
 • Search Results template type now added on the fly
 • IMPORTANT! Please reset your default template
 • Background color allows for windows custom color definitions

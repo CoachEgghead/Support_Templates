@@ -38,6 +38,9 @@ namespace SupportTemplates
         FontDialog fontDlgLB = new FontDialog();
         FontDialog fontDlgDB = new FontDialog();
 
+        /// <summary>
+        /// 
+        /// </summary>
         public XmlDocument xm = new XmlDocument();
         /// <summary>
         /// 
@@ -52,13 +55,28 @@ namespace SupportTemplates
         /// 
         /// </summary>
         public string xmlFilePath = "";
+        /// <summary>
+        /// 
+        /// </summary>
         public string xmlFilePath5 = "c:\\Users\\" + NameWithoutDomain(System.Security.Principal.WindowsIdentity.GetCurrent().Name) + "\\AppData\\Local\\VirtualStore\\Program Files (x86)\\Egghead Apps\\Support Templates\\templates.xml";
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int defaultTemplate = 0;
-        // 12-28-18 Flags to handle text changed prompt when changing selected templates
+        /// <summary>
+        /// 
+        /// 12-28-18 Flags to handle text changed prompt when changing selected templates
+        /// </summary>
         public int lastTemplateSelected = 0;
-        public bool tempReverted = false; 
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool tempReverted = false;
 
+        /// <summary>
+        /// 
+        /// </summary>
         // 12-25-18 Check for changes to template code
         public bool rtb_TextChanged = false;
         
@@ -336,8 +354,13 @@ namespace SupportTemplates
 
         }
 
-        // Change the font size default to be the current value on close
-        // Save all custom changes
+        /// <summary>
+        /// Form closing event
+        /// <remarks>
+        /// Change the font size default to be the current value on close
+        /// Save all custom changes
+        /// </remarks>
+        /// </summary>
         public void Form1_FormClosing(Object sender, FormClosingEventArgs e)
         {
             if (rtb_TextChanged == true)
@@ -606,22 +629,7 @@ namespace SupportTemplates
             // 12/25/18
             //  When clicking clear, if there is text in the main RTB and no template selected, then prompt user to save.
             //  When clicking clear, if there is a selected template with changes, prompt user that there have been changes.
-            bool clearText = true;
-            if (!string.IsNullOrEmpty(TemplateText_tb.Text) && listBox1.SelectedIndex < 0) // RTB not empty and no item selected (-1)
-            {
-                DialogResult answer = System.Windows.Forms.MessageBox.Show("There is unsaved text. Are you sure??", "Confirm Clear", MessageBoxButtons.YesNo);
-                if (answer == DialogResult.No)
-                {
-                    clearText = false;
-                }
-            } else if (!string.IsNullOrEmpty(TemplateText_tb.Text) && listBox1.SelectedIndex >= 0 && rtb_TextChanged == true) // RTB not empty, item selected (>=0), & text chagned
-            {
-                DialogResult answer = System.Windows.Forms.MessageBox.Show("There are unsaved changes to the template. Are you sure??", "Confirm Clear", MessageBoxButtons.YesNo);
-                if (answer == DialogResult.No)
-                {
-                    clearText = false;
-                }
-            }
+            bool clearText = checkForUnsavedChanges();
 
             if (clearText == true) {
                 // 11/7/18 
@@ -638,7 +646,10 @@ namespace SupportTemplates
                 tempDesc_tb.Text = "";
                 NewTemplateName_tb.Text = "";
                 listBox1.ClearSelected();
-                rtb_TextChanged = false; // reset the text changed flag
+                if (rtb_TextChanged == true)
+                {
+                    rtb_TextChanged = false;
+                }
             }
         }
 
@@ -750,10 +761,14 @@ namespace SupportTemplates
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         /*
-         * Import a template XML and insert it at the end of the existing XML.  Create a backup of the existing XML onto the user's desktop
-         *   to avoide corruption of the existing XML.
-         */
+          * Import a template XML and insert it at the end of the existing XML.  Create a backup of the existing XML onto the user's desktop
+          *   to avoide corruption of the existing XML.
+          */
         public void Import_Insert()
         {
             string xmlPath = @"C:\";
@@ -830,10 +845,14 @@ namespace SupportTemplates
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         /*
-        * Import a template XML and overwrite the existing XML.  Create a backup of the existing XML onto the user's desktop
-        *   to avoide corruption of the existing XML.
-        */
+         * Import a template XML and overwrite the existing XML.  Create a backup of the existing XML onto the user's desktop
+         *   to avoide corruption of the existing XML.
+         */
         public void Import_Overwrite()
         {
             string xmlPath = @"C:\";
@@ -863,7 +882,8 @@ namespace SupportTemplates
         }
 
         /// <summary>
-        /// 
+        /// <remarks>
+        /// </remarks>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -959,10 +979,14 @@ namespace SupportTemplates
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         /* Add Type node
-         * Old and likely not needed any longer.  Type was added back in July 2018.
-         * Check to see if there is a node for Type in the XML.  If not add it for use and to avoid errors in the app.
-         */
+          * Old and likely not needed any longer.  Type was added back in July 2018.
+          * Check to see if there is a node for Type in the XML.  If not add it for use and to avoid errors in the app.
+          */
         public void xmlAddTypeNode()
         {
             // Use code from copy section to cycle through each node instead of .Last()
@@ -978,9 +1002,13 @@ namespace SupportTemplates
             xdocUpt.Save(xmlFilePath);
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         /* 11/28/18 Add Desc node
-         * Check to see if there is a node for Desc in the XML.  If not add it for use and to avoid errors in the app.
-         */
+          * Check to see if there is a node for Desc in the XML.  If not add it for use and to avoid errors in the app.
+          */
         public void xmlAddDescNode()
         {
             // Use code from copy section to cycle through each node instead of .Last()
@@ -996,6 +1024,10 @@ namespace SupportTemplates
             xdocUpt.Save(xmlFilePath);
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // This is to build the drop-list.
         public static List<string> GetItemsFromXmlUsingTagNames(string Filename, string TagName)
         {
@@ -1026,16 +1058,57 @@ namespace SupportTemplates
             return Items;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // Select a template type to display a listing
         //  Handle search options
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (toolStripMenuItem5.Checked) // Auto-refresh checked so update list
             {
+                bool clearText = checkForUnsavedChanges();
+                if (clearText == true) {
+                    if (comboBox1.SelectedItem.ToString() == "Search Results")
+                    {
+                        // 12-28-18 Appears to not need this.  Searches are not instituted from the type list
+                        //listBox1.Items.Clear(); // Go ahead and clear the template listing before searching
+                        //searchTmplt();
+                    }
+                    else
+                    {
+                        // 12-28-18 Remove Search Results type if present since not searching
+                        int searchIndex = comboBox1.Items.IndexOf("Search Results");
+                        if (searchIndex >= 0)
+                        {
+                            comboBox1.Items.RemoveAt(searchIndex);
+                        }
+
+                        Search_Tb.Text = "Search ...";
+                        Search_Tb.ForeColor = System.Drawing.Color.Gray;
+                        loadList();
+                    }
+                    if (rtb_TextChanged == true)
+                    {
+                        rtb_TextChanged = false;
+                    }
+                }
+            } // If Auto-Refresh not check don't do anything
+        }
+
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
+        private void refresh_btn_Click(object sender, EventArgs e)
+        {
+            bool clearText = checkForUnsavedChanges();
+            if (clearText == true) {
+                // Selected a new type so go grab the matching items and reload the list
                 if (comboBox1.SelectedItem.ToString() == "Search Results")
                 {
                     // 12-28-18 Appears to not need this.  Searches are not instituted from the type list
-                    //listBox1.Items.Clear(); // Go ahead and clear the template listing before searching
                     //searchTmplt();
                 }
                 else
@@ -1051,32 +1124,17 @@ namespace SupportTemplates
                     Search_Tb.ForeColor = System.Drawing.Color.Gray;
                     loadList();
                 }
-            } // If Auto-Refresh not check don't do anything
-        }
-
-        private void refresh_btn_Click(object sender, EventArgs e)
-        {
-            // Selected a new type so go grab the matching items and reload the list
-            if (comboBox1.SelectedItem.ToString() == "Search Results")
-            {
-                // 12-28-18 Appears to not need this.  Searches are not instituted from the type list
-                //searchTmplt();
-            }
-            else
-            {
-                // 12-28-18 Remove Search Results type if present since not searching
-                int searchIndex = comboBox1.Items.IndexOf("Search Results");
-                if (searchIndex >= 0)
+                if (rtb_TextChanged == true)
                 {
-                    comboBox1.Items.RemoveAt(searchIndex);
+                    rtb_TextChanged = false;
                 }
-
-                Search_Tb.Text = "Search ...";
-                Search_Tb.ForeColor = System.Drawing.Color.Gray;
-                loadList();
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // Slider to control font size
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
@@ -1086,6 +1144,10 @@ namespace SupportTemplates
             fontSizeval.Text = newSize.ToString();
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         public void searchTmplt()
         {
             if ((Search_Tb.Text != "Search ...") && (Search_Tb.Text != ""))
@@ -1139,27 +1201,47 @@ namespace SupportTemplates
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void SearchBtn_Click(object sender, EventArgs e)
         {
             searchTmplt();
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // Select all search text when click into the search field
         void Search_Tb_Click(object sender, System.EventArgs e)
         {
             Search_Tb.SelectAll();
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void menuExit_Click(object sender, EventArgs e)
         {
             this.Close();  //”this” refers to the form
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void Search_Tb_TextChanged(object sender, EventArgs e)
         {
             searchTmplt();
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void Search_Tb_Leave(object sender, EventArgs e)
         {
             if (Search_Tb.Text == "")
@@ -1169,6 +1251,10 @@ namespace SupportTemplates
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void Search_Tb_Enter(object sender, EventArgs e)
         {
             if (Search_Tb.Text == "Search ...")
@@ -1178,12 +1264,20 @@ namespace SupportTemplates
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // Open droplist when click anywhere in the droplist
         private void comboBox1_Click(object sender, EventArgs e)
         {
             comboBox1.DroppedDown = true;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // Open browser if click a link
         private void TemplateText_tb_LinkClicked(object sender, LinkClickedEventArgs e)
         {
@@ -1191,6 +1285,10 @@ namespace SupportTemplates
             System.Diagnostics.Process.Start("explorer.exe", linkText);
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // ContextMenu2 for main text field
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1198,6 +1296,10 @@ namespace SupportTemplates
                 TemplateText_tb.Cut();
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (TemplateText_tb.SelectionLength > 0)
@@ -1212,6 +1314,10 @@ namespace SupportTemplates
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //            if (TemplateText_tb.SelectionLength > 0)
@@ -1219,6 +1325,10 @@ namespace SupportTemplates
 
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (TemplateText_tb.CanUndo)
@@ -1226,6 +1336,10 @@ namespace SupportTemplates
             TemplateText_tb.ClearUndo();
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // ContextMenu3 for Desc field
         private void cutToolStripMenuItem3_Click(object sender, EventArgs e)
         {
@@ -1233,6 +1347,10 @@ namespace SupportTemplates
                 tempDesc_tb.Cut();
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void copyToolStripMenuItem3_Click(object sender, EventArgs e)
         {
             if (tempDesc_tb.SelectionLength > 0)
@@ -1247,6 +1365,10 @@ namespace SupportTemplates
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void pasteToolStripMenuItem3_Click(object sender, EventArgs e)
         {
             //            if (tempDesc_tb.SelectionLength > 0)
@@ -1254,6 +1376,10 @@ namespace SupportTemplates
 
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void undoToolStripMenuItem3_Click(object sender, EventArgs e)
         {
             if (tempDesc_tb.CanUndo)
@@ -1261,6 +1387,10 @@ namespace SupportTemplates
             tempDesc_tb.ClearUndo();
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void backupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ex = new ExportXML(xmlFilePath);
@@ -1270,6 +1400,10 @@ namespace SupportTemplates
 
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void backgroundColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ColorDialog MyDialog = new ColorDialog();
@@ -1286,6 +1420,10 @@ namespace SupportTemplates
 
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void backgroundColorToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ColorDialog MyDialog = new ColorDialog();
@@ -1302,6 +1440,10 @@ namespace SupportTemplates
 
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void backgroundColorToolStripMenuItem3_Click(object sender, EventArgs e)
         {
             ColorDialog MyDialog = new ColorDialog();
@@ -1318,6 +1460,10 @@ namespace SupportTemplates
 
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void resetColorsDefaultToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult answer = System.Windows.Forms.MessageBox.Show("Are you sure you wish to reset the font scheme to it's orginal state?", "Confirm Reset", MessageBoxButtons.YesNo);
@@ -1337,6 +1483,10 @@ namespace SupportTemplates
 
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void resetTrackBarValue()
         {
             int newTBV = Convert.ToInt32(TemplateText_tb.Font.Size);
@@ -1344,6 +1494,10 @@ namespace SupportTemplates
             fontSizeval.Text = newTBV.ToString();
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // Highlight the text in the search field that is found in the main template text box
         private void HighlightWords(string word)
         {
@@ -1363,6 +1517,10 @@ namespace SupportTemplates
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // Font dialog for main text box
         private void fontToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1395,6 +1553,10 @@ namespace SupportTemplates
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // Handle the Apply event by setting all text box fonts to 
         // the chosen font. 
         private void fontDlg_Apply(object sender, System.EventArgs e)
@@ -1404,6 +1566,10 @@ namespace SupportTemplates
             resetTrackBarValue();
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // Font dialog for list box
         private void fontToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -1435,6 +1601,10 @@ namespace SupportTemplates
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // Handle the Apply event by setting all list box fonts to 
         // the chosen font. 
         private void fontDlgLB_Apply(object sender, System.EventArgs e)
@@ -1443,6 +1613,10 @@ namespace SupportTemplates
             listBox1.ForeColor = fontDlgLB.Color;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // Font dialog for desc text box
         private void fontToolStripMenuItem3_Click(object sender, EventArgs e)
         {
@@ -1474,6 +1648,10 @@ namespace SupportTemplates
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // Handle the Apply event by setting desc text box fonts to 
         // the chosen font. 
         private void fontDlgDB_Apply(object sender, System.EventArgs e)
@@ -1482,9 +1660,13 @@ namespace SupportTemplates
             tempDesc_tb.ForeColor = fontDlgDB.Color;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         /*
-         * Imported code and not modified
-         */
+          * Imported code and not modified
+          */
         public static string NameWithoutDomain(string userName)
         {
             string[] parts = userName.Split(new char[] { '\\' });
@@ -1495,76 +1677,136 @@ namespace SupportTemplates
             return parts[1];
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void Copy_btn_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             Copy_btn.FlatAppearance.BorderSize = 1;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void Copy_btn_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             Copy_btn.FlatAppearance.BorderSize = 0;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void Clear_btn_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             Clear_btn.FlatAppearance.BorderSize = 1;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void Clear_btn_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             Clear_btn.FlatAppearance.BorderSize = 0;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void Delete_btn_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             Delete_btn.FlatAppearance.BorderSize = 1;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void Delete_btn_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             Delete_btn.FlatAppearance.BorderSize = 0;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void Rename_btn_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             Rename_btn.FlatAppearance.BorderSize = 1;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void Rename_btn_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             Rename_btn.FlatAppearance.BorderSize = 0;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void SearchBtn_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             SearchBtn.FlatAppearance.BorderSize = 1;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void SearchBtn_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             SearchBtn.FlatAppearance.BorderSize = 0;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void refresh_btn_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             refresh_btn.FlatAppearance.BorderSize = 1;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void refresh_btn_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             refresh_btn.FlatAppearance.BorderSize = 0;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void Save_btn_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             Save_btn.FlatAppearance.BorderSize = 1;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void Save_btn_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             Save_btn.FlatAppearance.BorderSize = 0;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             us = new UserSettings();
@@ -1573,11 +1815,15 @@ namespace SupportTemplates
             us.Refresh();
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         /*
-         * v1.9.2
-         * Auto backup process.  Uses the default backup settings to create a backup every n days.  This should help alleviate issues with laptop upgrades/crashes
-         * losing user template files if it's setup by the user.
-         */
+          * v1.9.2
+          * Auto backup process.  Uses the default backup settings to create a backup every n days.  This should help alleviate issues with laptop upgrades/crashes
+          * losing user template files if it's setup by the user.
+          */
         public void AutoBackupProcess(DateTime LastBU, DateTime CurrDate, string ABFreq, string ABLoc)
         {
             DateTime LastBUModified = LastBU.AddDays(int.Parse(ABFreq));
@@ -1596,7 +1842,11 @@ namespace SupportTemplates
             }
         }
 
-        /*
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
+       /*
          * v1.9.8
          * Save text box to a file.  Allows for sharing (and printing) of templates to others that are not using the app.
          */
@@ -1651,6 +1901,10 @@ namespace SupportTemplates
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // 12-18-18 Hotkey code
         protected override void WndProc(ref Message m)
         {
@@ -1672,6 +1926,10 @@ namespace SupportTemplates
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // 12-18-18 Hotkey code
         void ActivateApp(string processName)
         {
@@ -1683,6 +1941,10 @@ namespace SupportTemplates
             ShowWindow(p[0].MainWindowHandle, SW_MAXIMIZE);
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // Update is available so open the About form to allow for update installation
         private void updateAvailableToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1692,6 +1954,10 @@ namespace SupportTemplates
             af.Refresh();
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // Check for updates and turn on menustrip item if one is ready to install.
         // 12-28-18 New build to do an asyn check to avoid issues if no internet connection
         public void CheckForUpdate()
@@ -1706,6 +1972,10 @@ namespace SupportTemplates
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         void ad_CheckForUpdateCompleted(object sender, CheckForUpdateCompletedEventArgs e)
         {
             if (e.Error != null)
@@ -1724,12 +1994,20 @@ namespace SupportTemplates
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // 12-21-18 Added help docs link to file about menu
         private void helpDocsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://sites.google.com/site/martyelder/support-templates");
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // 12-21-18 Added Version info to file about menu 
         private void versionInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1739,6 +2017,10 @@ namespace SupportTemplates
             vf.Refresh();
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // 12-21-18 Right click menu item to insert a file URL into the main RTB
         //   Allows for linking images or other files to a template
         private void insertFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1754,6 +2036,10 @@ namespace SupportTemplates
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         // 12-22-18 Toying with RichTextFormatting in main template RTB
         //  Would take major rewrite to save to XAML
         //  Leaving here just in case
@@ -1765,6 +2051,10 @@ namespace SupportTemplates
             string xamlText = Encoding.UTF8.GetString(stream.ToArray());
             return xamlText;
         }
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private static FlowDocument SetRTF(string xamlString)
         {
             StringReader stringReader = new StringReader(xamlString);
@@ -1776,6 +2066,10 @@ namespace SupportTemplates
             return doc;
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void TemplateText_tb_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             // Replace "Keys.A" with the key you want
@@ -1792,9 +2086,57 @@ namespace SupportTemplates
             }
         }
 
+        /// <summary>
+        /// <remarks>
+        /// </remarks>
+        /// </summary>
         private void TemplateText_tb_TextChanged(object sender, EventArgs e)
         {
             rtb_TextChanged = true;
+        }
+
+        private void opentxtFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool clearText = checkForUnsavedChanges();
+            if (clearText == true) { 
+                System.Windows.Forms.OpenFileDialog openTxtFile = new System.Windows.Forms.OpenFileDialog();
+                openTxtFile.ShowHelp = true;
+                openTxtFile.Filter = "Text Documents (*.txt)|*.txt";
+                openTxtFile.DefaultExt = "txt";
+                openTxtFile.InitialDirectory = @"C:\";
+                if (openTxtFile.ShowDialog() == DialogResult.OK)
+                {
+                    TemplateText_tb.Text = File.ReadAllText(openTxtFile.FileName);
+                }
+                if (rtb_TextChanged == true)
+                {
+                    rtb_TextChanged = false;
+                }
+            }
+        }
+
+        bool checkForUnsavedChanges()
+        {
+            bool clearText = true;
+            if (!string.IsNullOrEmpty(TemplateText_tb.Text) && listBox1.SelectedIndex < 0) // RTB not empty and no item selected (-1)
+            {
+                DialogResult answer = System.Windows.Forms.MessageBox.Show("There is unsaved text. Are you sure??", "Confirm Clear", MessageBoxButtons.YesNo);
+                if (answer == DialogResult.No)
+                {
+                    clearText = false;
+                }
+            }
+            else if (!string.IsNullOrEmpty(TemplateText_tb.Text) && listBox1.SelectedIndex >= 0 && rtb_TextChanged == true) // RTB not empty, item selected (>=0), & text chagned
+            {
+                DialogResult answer = System.Windows.Forms.MessageBox.Show("There are unsaved changes to the template. Are you sure??", "Confirm Clear", MessageBoxButtons.YesNo);
+                if (answer == DialogResult.No)
+                {
+                    clearText = false;
+                }
+            }
+
+            return clearText;
+
         }
     }
 }
